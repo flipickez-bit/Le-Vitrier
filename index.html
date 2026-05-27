@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Vitrier — Lavage de vitres · Nice · Cannes · Côte d'Azur</title>
+  <meta name="description" content="Spécialiste du lavage de vitres à Nice, Cannes et sur toute la Côte d'Azur. Intervention sous 48h, produits 100% biodégradables." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+<body>
+
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">
+      <img src="Logo.png" alt="Le Vitrier" height="44" />
+    </a>
+    <div class="navbar__actions">
+      <a href="savoir-faire.html" class="navbar__cta">Notre Savoir-Faire</a>
+      <a href="https://wa.me/33763140034?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20un%20nettoyage%20de%20vitres." class="navbar__cta" target="_blank" rel="noopener">Votre devis</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO — Split 55/45 · texte + vidéo + bulles
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="hero hero--home">
+
+    <!-- Blobs décoratifs -->
+    <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+    <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+
+    <!-- Séparateur lumineux entre les deux panneaux -->
+    <div class="hero__sep" aria-hidden="true"></div>
+
+    <!-- ── GAUCHE ─────────────────────────────────────────────── -->
+    <div class="hero__left">
+
+      <h1 class="hero__title">
+        <span class="hero__line-wrap"><span class="hero__line">La clarté,</span></span>
+        <span class="hero__line-wrap"><span class="hero__line hero__line--accent">notre métier</span></span>
+      </h1>
+
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Nice &nbsp;&middot;&nbsp; Cannes &nbsp;&middot;&nbsp; Alentours
+      </div>
+
+      <p class="hero__sub">
+        Surfaces vitrées et panneaux solaires —
+        nettoyage professionnel à Nice, Cannes et leurs alentours.
+        Devis gratuit sous 48h.
+      </p>
+
+
+    </div>
+
+    <!-- ── DROITE — Vidéo ───────────────────────────────────── -->
+    <div class="hero__right">
+      <div class="hero__right-fade" aria-hidden="true"></div>
+      <div class="hero__img-frame">
+        <video autoplay muted loop playsinline>
+          <source src="Video hero.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- ── Bulles — positionnées sur le hero entier ──────────── -->
+    <div class="stat-card stat-card--1">
+      <span class="stat-card__num" data-count="100">0</span><span class="stat-card__plus">+</span>
+      <span class="stat-card__label">Clients satisfaits</span>
+    </div>
+
+    <div class="stat-card stat-card--2" style="--float-delay:.9s">
+      <span class="stat-card__num">48h</span>
+      <span class="stat-card__label">Devis gratuit</span>
+    </div>
+
+    <div class="stat-card stat-card--3" style="--float-delay:1.7s">
+      <svg class="stat-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M23 12a11.05 11.05 0 00-22 0zm-5 7a3 3 0 01-6 0v-7"/>
+      </svg>
+      <span class="stat-card__label">Garantie Pluie 5 jours</span>
+    </div>
+
+    <!-- Indicateur de scroll -->
+    <div class="hero__hint" aria-hidden="true">
+      <div class="hero__hint-mouse">
+        <div class="hero__hint-wheel"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CARDS — glissent par-dessus le hero sticky
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="cards-section">
+    <div class="cards-grid">
+
+      <a href="particulier.html" class="card card--particulier">
+        <div class="card__bg"></div>
+        <div class="card__overlay"></div>
+        <div class="card__content">
+          <span class="card__num">01</span>
+          <div class="card__body">
+            <span class="card__title">Particulier</span>
+            <span class="card__desc">Maisons · Appartements · Villas</span>
+          </div>
+          <span class="card__arrow">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 10h12M10 4l6 6-6 6"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="panneaux-solaires.html" class="card card--solaires">
+        <div class="card__bg"></div>
+        <div class="card__overlay"></div>
+        <div class="card__content">
+          <span class="card__num">02</span>
+          <div class="card__body">
+            <span class="card__title">Panneaux Solaires</span>
+            <span class="card__desc">Rendement · Longévité · Toutes marques · Tout toit</span>
+          </div>
+          <span class="card__arrow">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 10h12M10 4l6 6-6 6"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="professionnel.html" class="card card--professionnel">
+        <div class="card__bg"></div>
+        <div class="card__overlay"></div>
+        <div class="card__content">
+          <span class="card__num">03</span>
+          <div class="card__body">
+            <span class="card__title">Professionnel</span>
+            <span class="card__desc">Commerce · Restaurant · Hôtellerie · Airbnb · Tertiaire</span>
+          </div>
+          <span class="card__arrow">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 10h12M10 4l6 6-6 6"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="apres-chantier.html" class="card card--chantier">
+        <div class="card__bg"></div>
+        <div class="card__overlay"></div>
+        <div class="card__content">
+          <span class="card__num">04</span>
+          <div class="card__body">
+            <span class="card__title">Après Chantier</span>
+            <span class="card__desc">Plâtre · Peinture · Silicone · Béton · Poussière</span>
+          </div>
+          <span class="card__arrow">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 10h12M10 4l6 6-6 6"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ AVIS CLIENTS ════════════════════════════ -->
+  <section class="hp-section hp-section--white">
+    <div class="hp-inner">
+      <div class="hp-head">
+        <span class="section-label">Avis clients</span>
+        <h2 class="section-heading">Ils nous font confiance</h2>
+        <p class="section-sub">Des clients satisfaits sur toute la Côte d'Azur.</p>
+      </div>
+      <div class="testi-carousel-wrap">
+        <div class="testi-grid">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">« Équipe très professionnelle, ponctuels et efficaces. Mes vitres n'avaient jamais été aussi propres. Intervention rapide et soignée, je recommande vivement ! »</p>
+            <div>
+              <div class="testi-name">Sophie M.</div>
+              <div class="testi-detail">Villa · Antibes</div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">« On fait appel à Le Vitrier chaque mois pour nos vitrines. Résultat impeccable à chaque fois, intervention discrète avant l'ouverture. Parfait pour un restaurant. »</p>
+            <div>
+              <div class="testi-name">Le Comptoir Méditerranée</div>
+              <div class="testi-detail">Restaurant · Cannes</div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">« Mes panneaux solaires produisaient nettement moins depuis plusieurs mois. Après le nettoyage à l'eau osmosée, le rendement est clairement remonté. Service sérieux. »</p>
+            <div>
+              <div class="testi-name">Thomas R.</div>
+              <div class="testi-detail">Panneaux solaires · Nice</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-controls">
+          <button class="testi-arrow testi-arrow--prev" aria-label="Avis précédent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="testi-dots">
+            <span class="testi-dot testi-dot--active"></span>
+            <span class="testi-dot"></span>
+            <span class="testi-dot"></span>
+          </div>
+          <button class="testi-arrow testi-arrow--next" aria-label="Avis suivant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="https://g.page/r/CQIoI1XkFn69EAE/review" target="_blank" rel="noopener" class="testi-review-btn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="flex-shrink:0"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" opacity=".0"/><path d="M11 7h2v6h-2zm0 8h2v2h-2z" opacity=".0"/><path d="M12.545 10.239v1.814h2.545c-.233 1.362-1.419 2.322-2.545 2.322-1.598 0-2.91-1.393-2.91-3.108S10.947 8.16 12.545 8.16c.728 0 1.387.252 1.894.666l1.356-1.356C14.792 6.594 13.726 6 12.545 6 9.787 6 7.545 8.24 7.545 11s2.242 5 5 5c2.88 0 4.773-2.022 4.773-4.875 0-.325-.029-.641-.085-.948l-4.688.062z"/></svg>
+          Laisser un avis Google
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ RÉSEAUX SOCIAUX ══════════════════════════ -->
+  <section class="hp-section hp-section--navy">
+    <div class="hp-inner">
+      <div class="hp-head">
+        <span class="section-label">Nos réalisations</span>
+        <h2 class="section-heading section-heading--light">Suivez notre travail</h2>
+        <p class="section-sub section-sub--light">Photos avant/après, chantiers en cours, conseils — on partage tout sur nos réseaux.</p>
+      </div>
+      <div class="social-carousel-wrap">
+        <div class="social-cards">
+          <a href="https://instagram.com/levitrier06" class="social-card social-card--insta" target="_blank" rel="noopener">
+            <div class="social-card__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </div>
+            <div class="social-card__body">
+              <span class="social-card__name">@levitrier06</span>
+              <span class="social-card__label">Suivre sur Instagram</span>
+              <p class="social-card__desc">Avant/après, panneaux solaires, vitrines — nos chantiers en images.</p>
+            </div>
+            <span class="social-card__arrow">→</span>
+          </a>
+          <a href="https://facebook.com/levitrier06" class="social-card social-card--fb" target="_blank" rel="noopener">
+            <div class="social-card__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+            <div class="social-card__body">
+              <span class="social-card__name">Le Vitrier</span>
+              <span class="social-card__label">Suivre sur Facebook</span>
+              <p class="social-card__desc">Actualités, avis clients et offres du moment directement dans votre fil.</p>
+            </div>
+            <span class="social-card__arrow">→</span>
+          </a>
+        </div>
+        <div class="social-controls">
+          <button class="social-arrow social-arrow--prev" aria-label="Précédent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="social-dots">
+            <span class="social-dot social-dot--active"></span>
+            <span class="social-dot"></span>
+          </div>
+          <button class="social-arrow social-arrow--next" aria-label="Suivant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="footer__brand">Le Vitrier</span>
+    <div class="footer__contacts">
+      <a href="tel:+33677303065">06 77 30 30 65</a>
+      <span class="footer__dot" aria-hidden="true"></span>
+      <a href="mailto:levitrier06@gmail.com">levitrier06@gmail.com</a>
+    </div>
+    <div class="footer__legal-links">
+      <a href="faq.html">FAQ</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </div>
+    <div class="footer__socials">
+      <a href="https://wa.me/33763140034" aria-label="WhatsApp" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="https://instagram.com/levitrier06" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://facebook.com/levitrier06" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

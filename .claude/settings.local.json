@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp *)",
+      "PowerShell(claude mcp add magic --scope user --env API_KEY=\"c31c45f411d09e2989476c\")",
+      "PowerShell(& \"C:\\\\Users\\\\xaloi\\\\AppData\\\\Local\\\\Packages\\\\Claude_pzs8sxrjxfjjc\\\\LocalCache\\\\Roaming\\\\Claude\\\\claude-code\\\\2.1.119\\\\claude.exe\" mcp add magic -s user -e API_KEY=\"c31c45f411d09e2989476c\" -- npx @21st-dev/magic@latest)",
+      "mcp__magic__21st_magic_component_inspiration",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api *)",
+      "Bash(curl -s \"https://api.github.com/repos/Leonxlnx/taste-skill/contents/skills/taste-skill/SKILL.md\")",
+      "Bash(python3 -c \"import sys,json,base64; d=json.load\\(sys.stdin\\); print\\(base64.b64decode\\(d['content']\\).decode\\(\\)\\)\")",
+      "PowerShell($r = Invoke-RestMethod \"https://api.github.com/repos/Leonxlnx/taste-skill/contents/skills/taste-skill/SKILL.md\"; [System.Text.Encoding]::UTF8.GetString\\([System.Convert]::FromBase64String\\($r.content\\)\\))",
+      "Bash(python3 -c ' *)",
+      "WebFetch(domain:unsplash.com)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(where python *)",
+      "Bash(where node *)",
+      "Bash(where powershell *)",
+      "Bash(node -e ' *)",
+      "Bash(dir /b *.jpg *.jpeg *.png *.webp *.JPG *.JPEG *.PNG)",
+      "Bash(dir /b *.jpg *.jpeg *.png *.JPG *.JPEG)",
+      "Bash(dir /b *.jpg *.jpeg *.png *.JPG *.JPEG *.PNG)",
+      "Bash(ls \"C:\\\\Users\\\\xaloi\\\\Desktop\\\\Claude Code\\\\\" | sort -t'.' -k1,1)",
+      "Bash(ls \"C:\\\\Users\\\\xaloi\\\\Desktop\\\\Claude Code\\\\\" | grep -i \"chantier\\\\|avant\\\\|apres\\\\|before\\\\|after\")",
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\xaloi\\\\Desktop\\\\Claude Code\" -File)",
+      "Bash(Sort-Object LastWriteTime -Descending)",
+      "Bash(Select-Object Name, LastWriteTime)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(grep -c 'quick-card\"' 'C:/Users/xaloi/Desktop/Claude Code/__TRACKED_VAR__.html')",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
