@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://levitrier06.fr/sitemap.xml

@@ -333,6 +333,87 @@
   }
 
 
+  /* ── 9. GOOGLE REVIEWS — Places API (optionnel) ──────────────
+     Active les vrais avis Google dès que GOOGLE_PLACE_ID est renseigné
+     et que le script Maps API est décommenté dans index.html.
+     Sinon les avis statiques restent affichés (fallback).
+  ───────────────────────────────────────────────────────────────── */
+  var GOOGLE_PLACE_ID = ''; // ex: 'ChIJN1t_tDeuEmsRUsoyG83frY4' — remplir après config API
+
+  function renderGoogleReviews(reviews) {
+    var grid     = document.querySelector('.testi-grid');
+    var dotsWrap = document.querySelector('.testi-dots');
+    if (!grid || !reviews || reviews.length === 0) return;
+
+    var good = reviews.filter(function(r) { return r.rating >= 4; });
+    if (good.length === 0) return;
+
+    grid.innerHTML = good.map(function(r) {
+      var stars = '';
+      for (var i = 0; i < 5; i++) stars += (i < r.rating) ? '★' : '☆';
+      var txt = r.text || '';
+      if (txt.length > 300) txt = txt.slice(0, 300) + '…';
+      var when = r.relative_time_description ? ' · ' + r.relative_time_description : '';
+      return '<div class="testi-card">' +
+        '<div class="testi-stars">' + stars + '</div>' +
+        '<p class="testi-text">« ' + txt + ' »</p>' +
+        '<div>' +
+          '<div class="testi-name">' + (r.author_name || 'Client vérifié') + '</div>' +
+          '<div class="testi-detail">Avis Google vérifié' + when + '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    if (dotsWrap) {
+      dotsWrap.innerHTML = good.map(function(r, i) {
+        return '<span class="testi-dot' + (i === 0 ? ' testi-dot--active' : '') + '"></span>';
+      }).join('');
+    }
+
+    if (window.innerWidth <= 640) { initTestiCarousel(); }
+  }
+
+  function initGoogleReviews() {
+    if (!GOOGLE_PLACE_ID) return; // pas encore configuré
+
+    /* Cache localStorage 6h */
+    var KEY_DATA = 'lv_reviews_data';
+    var KEY_TIME = 'lv_reviews_time';
+    try {
+      var cached = localStorage.getItem(KEY_DATA);
+      var ts     = parseInt(localStorage.getItem(KEY_TIME) || '0', 10);
+      if (cached && (Date.now() - ts) < 21600000) {
+        renderGoogleReviews(JSON.parse(cached));
+        return;
+      }
+    } catch(e) {}
+
+    function fetchFromApi() {
+      if (typeof google === 'undefined' || !google.maps || !google.maps.places) return;
+      var div = document.createElement('div');
+      var svc = new google.maps.places.PlacesService(div);
+      svc.getDetails({
+        placeId: GOOGLE_PLACE_ID,
+        fields: ['reviews', 'rating', 'user_ratings_total', 'name']
+      }, function(place, status) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !place.reviews) return;
+        var reviews = place.reviews.slice(0, 5);
+        try {
+          localStorage.setItem(KEY_DATA, JSON.stringify(reviews));
+          localStorage.setItem(KEY_TIME, String(Date.now()));
+        } catch(e) {}
+        renderGoogleReviews(reviews);
+      });
+    }
+
+    if (window._mapsReady) {
+      fetchFromApi();
+    } else {
+      window._mapsReadyCb = fetchFromApi;
+    }
+  }
+
+
   /* ── 9a. CAROUSEL AVIS — flèches + auto 4s ───────────────────
      Mobile uniquement (≤ 640px). Transform-based, flèches HTML.
   ───────────────────────────────────────────────────────────────── */
@@ -525,6 +606,7 @@
     initBASliders();
     initMarquee();
     initDirectionalHover();
+    initGoogleReviews();
     initTestiCarousel();
     initSocialCarousel();
     initCarousels();
