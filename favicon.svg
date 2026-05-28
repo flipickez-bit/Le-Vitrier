@@ -1,25 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Fond bleu foncé -->
-  <rect width="64" height="64" rx="10" fill="#0d2d5e"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 
-  <!-- Raclette (manche) -->
-  <rect x="30" y="36" width="4" height="14" rx="2" fill="#b0b8c8"/>
+  <!-- Fond bleu marine, coins très arrondis -->
+  <rect width="64" height="64" rx="16" fill="#0a2550"/>
 
-  <!-- Tête de raclette -->
-  <rect x="18" y="31" width="28" height="7" rx="3" fill="#8a9ab5"/>
+  <!-- Reflet subtil haut -->
+  <ellipse cx="32" cy="8" rx="22" ry="6" fill="white" opacity="0.04"/>
 
-  <!-- Caoutchouc raclette -->
-  <rect x="19" y="37" width="26" height="2" rx="1" fill="#5a6a85"/>
+  <!-- === EAU / SAVON === -->
+  <!-- Goutte gauche -->
+  <ellipse cx="18" cy="27" rx="6" ry="9" fill="#2196F3" opacity="0.85"/>
+  <!-- Goutte centrale (plus grande) -->
+  <ellipse cx="32" cy="22" rx="8" ry="12" fill="#42A5F5"/>
+  <!-- Goutte droite -->
+  <ellipse cx="46" cy="27" rx="6" ry="9" fill="#2196F3" opacity="0.85"/>
 
-  <!-- Eau / savon (3 gouttes stylisées) -->
-  <ellipse cx="24" cy="24" rx="4" ry="6" fill="#4a9fe8" opacity="0.9"/>
-  <ellipse cx="32" cy="20" rx="5" ry="8" fill="#5cb8f5" opacity="0.95"/>
-  <ellipse cx="40" cy="24" rx="4" ry="6" fill="#4a9fe8" opacity="0.9"/>
+  <!-- Reflets sur l'eau -->
+  <ellipse cx="30" cy="17" rx="3" ry="2" fill="white" opacity="0.45"/>
+  <ellipse cx="17" cy="23" rx="1.5" ry="1" fill="white" opacity="0.35"/>
+  <ellipse cx="45" cy="23" rx="1.5" ry="1" fill="white" opacity="0.35"/>
 
-  <!-- Brillance sur l'eau -->
-  <ellipse cx="31" cy="17" rx="2" ry="1" fill="white" opacity="0.6"/>
+  <!-- Bulles -->
+  <circle cx="11" cy="16" r="2" fill="white" opacity="0.25"/>
+  <circle cx="52" cy="20" r="1.5" fill="white" opacity="0.2"/>
+  <circle cx="8"  cy="26" r="1" fill="white" opacity="0.15"/>
+  <circle cx="56" cy="14" r="1" fill="white" opacity="0.15"/>
 
-  <!-- Étoiles / brillance -->
-  <text x="13" y="20" font-size="7" fill="white" opacity="0.9">✦</text>
-  <text x="46" y="18" font-size="5" fill="white" opacity="0.8">✦</text>
+  <!-- === RACLETTE === -->
+  <!-- Corps (arrondi) -->
+  <rect x="9" y="35" width="46" height="8" rx="4" fill="#7B8FA8"/>
+  <!-- Bande caoutchouc (arrondie) -->
+  <rect x="11" y="41" width="42" height="3" rx="1.5" fill="#3C4F6A"/>
+  <!-- Manche (arrondi) -->
+  <rect x="27" y="43" width="10" height="14" rx="5" fill="#A0B0C8"/>
+  <!-- Reflet manche -->
+  <rect x="29" y="44" width="3" height="10" rx="1.5" fill="white" opacity="0.15"/>
+
 </svg>
