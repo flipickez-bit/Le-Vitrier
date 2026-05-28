@@ -338,7 +338,7 @@
      et que le script Maps API est décommenté dans index.html.
      Sinon les avis statiques restent affichés (fallback).
   ───────────────────────────────────────────────────────────────── */
-  var GOOGLE_PLACE_ID = ''; // ex: 'ChIJN1t_tDeuEmsRUsoyG83frY4' — remplir après config API
+  var GOOGLE_PLACE_ID = 'ChIJt99CbDN7HmoRAigjVeQWfr0'; // Le Vitrier — Nice
 
   function renderGoogleReviews(reviews) {
     var grid     = document.querySelector('.testi-grid');
