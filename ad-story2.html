@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1080px;height:1080px;overflow:hidden;font-family:'Outfit',sans-serif;}
+.wrap{width:1080px;height:1080px;position:relative;}
+
+/* Photo plein écran — après propre */
+.bg{
+  position:absolute;inset:0;
+  background:url('apres pro.jpg') center/cover no-repeat;
+  filter:brightness(1.0) saturate(1.1);
+}
+
+/* Overlay léger en bas */
+.overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(13,45,110,0.75) 0%,
+    rgba(13,45,110,0.1) 35%,
+    rgba(13,45,110,0.05) 55%,
+    rgba(13,45,110,0.82) 100%
+  );
+}
+
+/* Top — logo + badge */
+.top{
+  position:absolute;top:52px;left:56px;right:56px;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  z-index:10;
+}
+.brand-block{}
+.brand-name{
+  color:#fff;font-size:46px;font-weight:800;
+  letter-spacing:-0.5px;line-height:1;
+}
+.brand-name span{color:#4BAEE8;}
+.brand-sub{
+  color:rgba(255,255,255,0.55);font-size:16px;font-weight:400;
+  letter-spacing:1.5px;text-transform:uppercase;margin-top:8px;
+}
+
+.badge{
+  background:rgba(75,174,232,0.15);
+  border:1px solid rgba(75,174,232,0.35);
+  backdrop-filter:blur(12px);
+  border-radius:50px;
+  padding:12px 24px;
+  color:#4BAEE8;font-size:14px;font-weight:600;
+  letter-spacing:0.5px;
+  display:flex;align-items:center;gap:8px;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#4BAEE8;}
+
+/* Center — tagline principale */
+.center{
+  position:absolute;
+  bottom:200px;left:56px;right:56px;
+  z-index:10;
+}
+.tagline{
+  color:#fff;
+  font-size:72px;font-weight:800;
+  line-height:1.0;letter-spacing:-2px;
+}
+.tagline em{
+  font-style:normal;
+  color:#4BAEE8;
+}
+.tagline-sub{
+  color:rgba(255,255,255,0.6);
+  font-size:22px;font-weight:400;
+  margin-top:16px;letter-spacing:0.2px;
+  line-height:1.4;
+}
+
+/* Bottom row */
+.bottom{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:0 56px 52px;
+  z-index:10;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.bottom-left{}
+.stars-row{
+  display:flex;align-items:center;gap:12px;margin-bottom:12px;
+}
+.stars{color:#FFD700;font-size:20px;letter-spacing:2px;}
+.stars-label{color:rgba(255,255,255,0.4);font-size:13px;}
+
+.phone{
+  color:rgba(255,255,255,0.9);font-size:26px;font-weight:700;
+}
+.phone small{
+  display:block;color:rgba(255,255,255,0.35);
+  font-size:12px;font-weight:400;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;
+}
+
+.cta-block{display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.cta{
+  background:#4BAEE8;color:#0D2D6E;
+  padding:20px 48px;border-radius:50px;
+  font-size:18px;font-weight:800;letter-spacing:0.2px;
+  box-shadow:0 8px 30px rgba(75,174,232,0.35);
+}
+.zones{
+  color:rgba(255,255,255,0.25);font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;
+  text-align:right;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+
+  <!-- TOP -->
+  <div class="top">
+    <div class="brand-block">
+      <div class="brand-name">Le<br/><span>Vitrier</span></div>
+      <div class="brand-sub">Côte d'Azur</div>
+    </div>
+    <div class="badge">
+      <div class="badge-dot"></div>
+      Disponible maintenant
+    </div>
+  </div>
+
+  <!-- TAGLINE -->
+  <div class="center">
+    <div class="tagline">Nous sommes<br/><em>indispensables.</em></div>
+    <div class="tagline-sub">Parce que des vitres propres, ça change tout. ✨</div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom">
+    <div class="bottom-left">
+      <div class="stars-row">
+        <span class="stars">★★★★★</span>
+        <span class="stars-label">Clients satisfaits</span>
+      </div>
+      <div class="phone">
+        <small>Appelez-nous</small>
+        06 77 30 30 65
+      </div>
+    </div>
+    <div class="cta-block">
+      <div class="cta">Devis gratuit →</div>
+      <div class="zones">Nice · Cannes · Antibes · Monaco</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

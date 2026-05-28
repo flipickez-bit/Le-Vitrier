@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1080px;height:1080px;overflow:hidden;background:#0D2D6E;font-family:'Outfit',sans-serif;}
+
+.wrap{width:1080px;height:1080px;position:relative;}
+
+/* Full bleed after photo */
+.bg{
+  position:absolute;inset:0;
+  background:url('apres pro.jpg') center/cover no-repeat;
+}
+
+/* Gradient overlays */
+.overlay-top{
+  position:absolute;top:0;left:0;right:0;height:260px;
+  background:linear-gradient(to bottom,rgba(13,45,110,0.92) 0%,transparent 100%);
+  z-index:2;
+}
+.overlay-bottom{
+  position:absolute;bottom:0;left:0;right:0;height:380px;
+  background:linear-gradient(to top,rgba(13,45,110,0.97) 0%,rgba(13,45,110,0.7) 60%,transparent 100%);
+  z-index:2;
+}
+
+/* Top bar */
+.top-bar{
+  position:absolute;top:0;left:0;right:0;
+  padding:48px 60px 0;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:10;
+}
+.logo-name{
+  color:#fff;
+  font-size:22px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+}
+.logo-line{
+  width:40px;height:2px;background:#4BAEE8;margin-top:6px;
+}
+.available{
+  display:flex;align-items:center;gap:10px;
+  color:rgba(255,255,255,0.7);font-size:14px;font-weight:400;
+  letter-spacing:0.5px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:#4BAEE8;}
+
+/* Bottom content */
+.bottom{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:0 60px 56px;
+  z-index:10;
+}
+.eyebrow{
+  color:#4BAEE8;
+  font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.headline{
+  color:#fff;
+  font-size:62px;font-weight:800;line-height:1.05;letter-spacing:-1.5px;
+  margin-bottom:22px;
+}
+.headline span{color:#4BAEE8;}
+
+.meta{
+  display:flex;align-items:center;gap:24px;margin-bottom:36px;
+}
+.stars{color:#FFD700;font-size:18px;letter-spacing:2px;}
+.sep{width:1px;height:16px;background:rgba(255,255,255,0.2);}
+.meta-text{color:rgba(255,255,255,0.55);font-size:14px;font-weight:400;letter-spacing:0.3px;}
+
+.bottom-row{
+  display:flex;align-items:center;justify-content:space-between;
+}
+.phone{
+  color:#fff;font-size:24px;font-weight:700;letter-spacing:0.5px;
+}
+.phone small{
+  display:block;color:rgba(255,255,255,0.4);font-size:12px;
+  font-weight:400;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;
+}
+.cta{
+  background:#4BAEE8;color:#0D2D6E;
+  padding:18px 44px;border-radius:50px;
+  font-size:17px;font-weight:800;letter-spacing:0.3px;
+}
+.zones{
+  color:rgba(255,255,255,0.35);font-size:13px;
+  font-weight:400;letter-spacing:1.5px;text-transform:uppercase;
+  margin-top:28px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bg"></div>
+  <div class="overlay-top"></div>
+  <div class="overlay-bottom"></div>
+
+  <div class="top-bar">
+    <div>
+      <div class="logo-name">Le Vitrier</div>
+      <div class="logo-line"></div>
+    </div>
+    <div class="available">
+      <div class="dot"></div>
+      Disponible sur la Côte d'Azur
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="eyebrow">Lavage de vitres professionnel</div>
+    <div class="headline">Vitres<br/>impeccables,<br/><span>résultat garanti.</span></div>
+    <div class="meta">
+      <span class="stars">★★★★★</span>
+      <div class="sep"></div>
+      <span class="meta-text">Devis gratuit sous 48h</span>
+      <div class="sep"></div>
+      <span class="meta-text">Intervention rapide</span>
+    </div>
+    <div class="bottom-row">
+      <div class="phone">
+        <small>Appelez-nous</small>
+        06 77 30 30 65
+      </div>
+      <div class="cta">Devis gratuit →</div>
+    </div>
+    <div class="zones">Nice · Cannes · Antibes · Monaco · Côte d'Azur</div>
+  </div>
+</div>
+</body>
+</html>

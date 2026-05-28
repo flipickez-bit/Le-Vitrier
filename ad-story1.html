@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1080px;height:1080px;overflow:hidden;font-family:'Outfit',sans-serif;}
+.wrap{width:1080px;height:1080px;position:relative;}
+
+/* Photo plein écran */
+.bg{
+  position:absolute;inset:0;
+  background:url('avant pro.jpg') center/cover no-repeat;
+  filter:brightness(0.72) saturate(0.6);
+}
+
+/* Vignette sombre bas */
+.vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,0.45) 100%);
+}
+
+/* Logo discret en haut */
+.top-bar{
+  position:absolute;top:48px;left:56px;right:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:10;
+}
+.logo{
+  color:rgba(255,255,255,0.75);font-size:16px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+}
+.logo span{color:#4BAEE8;}
+
+/* === CHAT BUBBLES === */
+.chat{
+  position:absolute;
+  bottom:170px;left:56px;right:56px;
+  display:flex;flex-direction:column;gap:16px;
+  z-index:10;
+}
+
+/* Bulle reçue (gris, gauche) */
+.bubble{
+  max-width:620px;
+  padding:20px 28px;
+  border-radius:24px;
+  font-size:26px;font-weight:500;line-height:1.35;
+  position:relative;
+}
+.bubble-received{
+  background:rgba(255,255,255,0.93);
+  color:#111;
+  border-bottom-left-radius:6px;
+  align-self:flex-start;
+  box-shadow:0 8px 32px rgba(0,0,0,0.25);
+}
+.bubble-received::before{
+  content:'';position:absolute;bottom:-10px;left:20px;
+  width:0;height:0;
+  border-left:14px solid transparent;
+  border-right:14px solid transparent;
+  border-top:12px solid rgba(255,255,255,0.93);
+}
+
+/* Bulle envoyée (bleue, droite) */
+.bubble-sent{
+  background:#4BAEE8;
+  color:#fff;
+  border-bottom-right-radius:6px;
+  align-self:flex-end;
+  box-shadow:0 8px 32px rgba(75,174,232,0.4);
+}
+.bubble-sent::before{
+  content:'';position:absolute;bottom:-10px;right:20px;
+  width:0;height:0;
+  border-left:14px solid transparent;
+  border-right:14px solid transparent;
+  border-top:12px solid #4BAEE8;
+}
+
+.bubble-meta{
+  font-size:13px;color:rgba(255,255,255,0.4);
+  margin-top:4px;
+  padding:0 8px;
+}
+.bubble-meta.right{text-align:right;}
+
+/* Emoji dans la bulle */
+.emoji{font-size:28px;}
+
+/* Bottom */
+.bottom{
+  position:absolute;bottom:0;left:0;right:0;
+  height:140px;
+  background:linear-gradient(to top,rgba(13,45,110,0.95) 0%,transparent 100%);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 56px 40px;
+  z-index:10;
+}
+.hashtag{
+  color:rgba(255,255,255,0.35);font-size:15px;
+  font-weight:400;letter-spacing:1px;
+}
+.swipe{
+  color:rgba(255,255,255,0.5);font-size:14px;
+  font-weight:500;letter-spacing:1px;
+  display:flex;align-items:center;gap:8px;
+}
+.swipe-arrow{color:#4BAEE8;font-size:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bg"></div>
+  <div class="vignette"></div>
+
+  <div class="top-bar">
+    <div class="logo">Le <span>Vitrier</span></div>
+  </div>
+
+  <div class="chat">
+    <!-- Message reçu -->
+    <div class="bubble bubble-received">
+      Chéri… tu peux laver<br/>les vitres ce weekend ? <span class="emoji">🥺</span>
+    </div>
+    <div class="bubble-meta">Marie · 09:14 ✓✓</div>
+
+    <!-- Réponse envoyée -->
+    <div class="bubble bubble-sent">
+      Bonne idée… j'appelle<br/>Le Vitrier ! <span class="emoji">😅</span>
+    </div>
+    <div class="bubble-meta right">Thomas · 09:16 ✓✓</div>
+  </div>
+
+  <div class="bottom">
+    <div class="hashtag">#LesVitresCaNousConnait</div>
+    <div class="swipe">La suite <span class="swipe-arrow">→</span></div>
+  </div>
+</div>
+</body>
+</html>

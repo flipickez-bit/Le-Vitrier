@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #050f1f;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .wrap {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    z-index: 20;
+    background: linear-gradient(180deg, #050f1f 0%, rgba(5,15,31,0.95) 100%);
+    padding: 32px 52px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .brand-icon {
+    width: 54px;
+    height: 54px;
+    background: linear-gradient(135deg, #1565C0, #1E88E5);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 18px rgba(30,136,229,0.45);
+  }
+  .brand-text {}
+  .brand-name {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+  .brand-tagline {
+    color: #5b8fc9;
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 2px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    padding: 12px 24px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .phone-dot {
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── PHOTOS ── */
+  .photos {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photo-side {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photo-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .photo-left img {
+    filter: brightness(0.75) saturate(0.6) contrast(1.1);
+  }
+  .photo-right img {
+    filter: brightness(1.05) saturate(1.15) contrast(1.05);
+  }
+
+  /* Overlay dégradé sur les côtés */
+  .photo-left::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(5,15,31,0.25) 0%, transparent 60%);
+  }
+  .photo-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to left, rgba(5,15,31,0.15) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  /* Labels AVANT / APRÈS */
+  .label {
+    position: absolute;
+    top: 26px;
+    padding: 7px 20px;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    z-index: 5;
+  }
+  .label-avant {
+    left: 22px;
+    background: rgba(0,0,0,0.5);
+    color: #ff8a80;
+    border: 1px solid rgba(255,138,128,0.3);
+    backdrop-filter: blur(4px);
+  }
+  .label-apres {
+    right: 22px;
+    background: rgba(21,101,192,0.75);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Barre centrale */
+  .divider {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.9) 15%, white 50%, rgba(255,255,255,0.9) 85%, transparent 100%);
+    transform: translateX(-50%);
+    z-index: 10;
+    box-shadow: 0 0 12px rgba(255,255,255,0.3);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    position: relative;
+    z-index: 20;
+    background: linear-gradient(180deg, rgba(5,15,31,0.97) 0%, #050f1f 100%);
+    padding: 26px 52px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-left {}
+
+  .headline {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+  .headline em {
+    font-style: normal;
+    color: #42A5F5;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 10px;
+  }
+  .stars {
+    color: #FFD700;
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+  .divider-dot {
+    width: 4px;
+    height: 4px;
+    background: #3a5a7a;
+    border-radius: 50%;
+  }
+  .meta-text {
+    color: #5b8fc9;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .zones {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .zone {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #8ab4d8;
+    padding: 4px 13px;
+    border-radius: 30px;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .cta-btn {
+    background: linear-gradient(135deg, #1E88E5 0%, #1565C0 100%);
+    color: white;
+    padding: 18px 38px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    box-shadow: 0 8px 28px rgba(30,136,229,0.45);
+    white-space: nowrap;
+  }
+  .cta-sub {
+    color: #3a5a7a;
+    font-size: 12px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-icon">🪟</div>
+      <div class="brand-text">
+        <div class="brand-name">Le Vitrier</div>
+        <div class="brand-tagline">Lavage de vitres professionnel</div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="phone-dot"></div>
+      06 77 30 30 65
+    </div>
+  </div>
+
+  <!-- PHOTOS AVANT / APRÈS -->
+  <div class="photos">
+    <div class="photo-side photo-left">
+      <img src="avant pro.jpg" alt="Avant"/>
+      <div class="label label-avant">Avant</div>
+    </div>
+    <div class="photo-side photo-right">
+      <img src="apres pro.jpg" alt="Après"/>
+      <div class="label label-apres">Après ✦</div>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="headline">Vitres impeccables,<br/><em>résultat garanti.</em></div>
+      <div class="meta-row">
+        <span class="stars">★★★★★</span>
+        <div class="divider-dot"></div>
+        <span class="meta-text">Devis gratuit sous 48h</span>
+        <div class="divider-dot"></div>
+        <span class="meta-text">Intervention rapide</span>
+      </div>
+      <div class="zones">
+        <span class="zone">Nice</span>
+        <span class="zone">Cannes</span>
+        <span class="zone">Antibes</span>
+        <span class="zone">Monaco</span>
+        <span class="zone">Côte d'Azur</span>
+      </div>
+    </div>
+    <div class="cta">
+      <div class="cta-btn">Devis gratuit →</div>
+      <div class="cta-sub">Sans engagement · Réponse rapide</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

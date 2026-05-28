@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'Outfit',sans-serif;}
+.wrap{width:1920px;height:1080px;display:flex;position:relative;}
+
+/* ══════════════════════════════
+   GAUCHE — Avant + Chat
+══════════════════════════════ */
+.left{
+  width:960px;height:1080px;
+  position:relative;overflow:hidden;flex-shrink:0;
+}
+.bg-left{
+  position:absolute;inset:0;
+  background:url('avant pro.jpg') center/cover no-repeat;
+  filter:brightness(0.65) saturate(0.5);
+}
+.overlay-left{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    135deg,
+    rgba(13,45,110,0.55) 0%,
+    rgba(0,0,0,0.2) 60%,
+    rgba(13,45,110,0.7) 100%
+  );
+}
+
+/* Logo haut gauche */
+.logo-left{
+  position:absolute;top:46px;left:52px;
+  z-index:10;
+  color:rgba(255,255,255,0.65);
+  font-size:15px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+}
+.logo-left span{color:#4BAEE8;}
+
+/* Chat bubbles */
+.chat{
+  position:absolute;
+  bottom:100px;left:52px;right:52px;
+  display:flex;flex-direction:column;gap:18px;
+  z-index:10;
+}
+.bubble{
+  padding:20px 26px;
+  border-radius:22px;
+  font-size:24px;font-weight:500;line-height:1.35;
+  position:relative;max-width:520px;
+}
+.bubble-received{
+  background:rgba(255,255,255,0.94);
+  color:#111;
+  border-bottom-left-radius:5px;
+  align-self:flex-start;
+  box-shadow:0 6px 28px rgba(0,0,0,0.3);
+}
+.bubble-received::after{
+  content:'';position:absolute;bottom:-10px;left:22px;
+  border:12px solid transparent;
+  border-top-color:rgba(255,255,255,0.94);
+  border-bottom:none;border-left:none;
+}
+.bubble-sent{
+  background:#4BAEE8;
+  color:#fff;
+  border-bottom-right-radius:5px;
+  align-self:flex-end;
+  box-shadow:0 6px 28px rgba(75,174,232,0.45);
+}
+.bubble-sent::after{
+  content:'';position:absolute;bottom:-10px;right:22px;
+  border:12px solid transparent;
+  border-top-color:#4BAEE8;
+  border-bottom:none;border-right:none;
+}
+.meta{
+  font-size:13px;
+  color:rgba(255,255,255,0.35);
+  padding:0 6px;margin-top:2px;
+}
+.meta.r{text-align:right;}
+.emoji{font-size:26px;}
+
+/* ══════════════════════════════
+   SÉPARATEUR CENTRAL
+══════════════════════════════ */
+.divider{
+  position:absolute;left:960px;top:0;bottom:0;
+  width:3px;
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,0.5) 20%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(255,255,255,0.5) 80%,
+    transparent 100%
+  );
+  z-index:20;
+  transform:translateX(-50%);
+}
+
+/* ══════════════════════════════
+   DROITE — Après + Tagline
+══════════════════════════════ */
+.right{
+  width:960px;height:1080px;
+  position:relative;overflow:hidden;flex-shrink:0;
+}
+.bg-right{
+  position:absolute;inset:0;
+  background:url('apres pro.jpg') center/cover no-repeat;
+  filter:brightness(1.0) saturate(1.1);
+}
+.overlay-right{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    135deg,
+    rgba(13,45,110,0.7) 0%,
+    rgba(13,45,110,0.1) 40%,
+    rgba(13,45,110,0.0) 60%,
+    rgba(13,45,110,0.85) 100%
+  );
+}
+
+/* Branding haut droite */
+.brand-right{
+  position:absolute;top:46px;right:52px;
+  z-index:10;text-align:right;
+}
+.brand-name{
+  color:#fff;font-size:28px;font-weight:800;
+  letter-spacing:3px;text-transform:uppercase;line-height:1;
+}
+.brand-name span{color:#4BAEE8;}
+.brand-sub{
+  color:rgba(255,255,255,0.4);font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;margin-top:6px;
+}
+
+/* Badge disponible */
+.badge{
+  position:absolute;top:46px;left:52px;
+  background:rgba(75,174,232,0.15);
+  border:1px solid rgba(75,174,232,0.35);
+  backdrop-filter:blur(12px);
+  border-radius:50px;padding:10px 20px;
+  color:#4BAEE8;font-size:13px;font-weight:600;
+  letter-spacing:0.5px;
+  display:flex;align-items:center;gap:8px;
+  z-index:10;
+}
+.badge-dot{
+  width:7px;height:7px;border-radius:50%;background:#4BAEE8;
+}
+
+/* Tagline centrale */
+.tagline-wrap{
+  position:absolute;
+  bottom:180px;left:52px;right:52px;
+  z-index:10;
+}
+.tagline{
+  color:#fff;font-size:68px;font-weight:800;
+  line-height:1.0;letter-spacing:-2px;
+}
+.tagline em{font-style:normal;color:#4BAEE8;}
+.tagline-sub{
+  color:rgba(255,255,255,0.6);font-size:20px;
+  font-weight:400;margin-top:14px;line-height:1.4;
+}
+
+/* Bottom droite */
+.bottom-right{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:0 52px 48px;z-index:10;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.bl{}
+.stars-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.stars{color:#FFD700;font-size:18px;letter-spacing:2px;}
+.stars-t{color:rgba(255,255,255,0.35);font-size:13px;}
+.phone{color:#fff;font-size:22px;font-weight:700;}
+.phone small{
+  display:block;color:rgba(255,255,255,0.3);
+  font-size:11px;font-weight:400;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:3px;
+}
+.cta-col{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.cta{
+  background:#4BAEE8;color:#0D2D6E;
+  padding:18px 42px;border-radius:50px;
+  font-size:17px;font-weight:800;
+  box-shadow:0 8px 28px rgba(75,174,232,0.35);
+}
+.zones{
+  color:rgba(255,255,255,0.22);font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;text-align:right;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ═══ GAUCHE ═══ -->
+  <div class="left">
+    <div class="bg-left"></div>
+    <div class="overlay-left"></div>
+
+    <div class="logo-left">Le <span>Vitrier</span></div>
+
+    <div class="chat">
+      <div class="bubble bubble-received">
+        Chéri… tu peux laver<br/>les vitres ce weekend ? <span class="emoji">🥺</span>
+      </div>
+      <div class="meta">Marie · 09h14 ✓✓</div>
+
+      <div class="bubble bubble-sent">
+        Bonne idée… j'appelle<br/>Le Vitrier ! <span class="emoji">😄</span>
+      </div>
+      <div class="meta r">Thomas · 09h16 ✓✓</div>
+    </div>
+  </div>
+
+  <!-- Séparateur -->
+  <div class="divider"></div>
+
+  <!-- ═══ DROITE ═══ -->
+  <div class="right">
+    <div class="bg-right"></div>
+    <div class="overlay-right"></div>
+
+    <div class="badge">
+      <div class="badge-dot"></div>
+      Disponible maintenant
+    </div>
+
+    <div class="brand-right">
+      <div class="brand-name">Le <span>Vitrier</span></div>
+      <div class="brand-sub">Côte d'Azur</div>
+    </div>
+
+    <div class="tagline-wrap">
+      <div class="tagline">Nous sommes<br/><em>indispensables.</em></div>
+      <div class="tagline-sub">Parce que des vitres propres, ça change tout. ✨</div>
+    </div>
+
+    <div class="bottom-right">
+      <div class="bl">
+        <div class="stars-row">
+          <span class="stars">★★★★★</span>
+          <span class="stars-t">Clients satisfaits</span>
+        </div>
+        <div class="phone">
+          <small>Appelez-nous</small>
+          06 77 30 30 65
+        </div>
+      </div>
+      <div class="cta-col">
+        <div class="cta">Devis gratuit →</div>
+        <div class="zones">Nice · Cannes · Antibes · Monaco</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

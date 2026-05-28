@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1080px;height:1080px;overflow:hidden;background:#0D2D6E;font-family:'Outfit',sans-serif;}
+.wrap{width:1080px;height:1080px;display:flex;flex-direction:column;}
+
+/* HEADER */
+.header{
+  height:130px;background:#0D2D6E;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;flex-shrink:0;
+  border-bottom:1px solid rgba(75,174,232,0.2);
+}
+.brand{display:flex;flex-direction:column;gap:4px;}
+.brand-name{color:#fff;font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;}
+.brand-tag{color:#4BAEE8;font-size:12px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;}
+.header-right{text-align:right;}
+.phone-label{color:rgba(255,255,255,0.35);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.phone-num{color:#fff;font-size:22px;font-weight:700;}
+
+/* PHOTOS */
+.photos{
+  flex:1;display:flex;position:relative;overflow:hidden;
+}
+.half{width:50%;position:relative;overflow:hidden;}
+.half img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.half-left img{filter:brightness(0.7) saturate(0.5);}
+.half-right img{filter:brightness(1.0) saturate(1.1) contrast(1.05);}
+
+/* Label pills */
+.pill{
+  position:absolute;top:28px;
+  padding:8px 22px;
+  border-radius:4px;
+  font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  z-index:5;
+}
+.pill-avant{
+  left:24px;
+  background:rgba(0,0,0,0.45);color:rgba(255,255,255,0.7);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(8px);
+}
+.pill-apres{
+  right:24px;
+  background:rgba(75,174,232,0.2);color:#4BAEE8;
+  border:1px solid rgba(75,174,232,0.4);
+  backdrop-filter:blur(8px);
+}
+
+/* Vertical divider */
+.vline{
+  position:absolute;left:50%;top:0;bottom:0;
+  width:2px;background:rgba(255,255,255,0.6);
+  transform:translateX(-50%);z-index:10;
+}
+
+/* Vignettes */
+.half-left::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(13,45,110,0.3) 0%,transparent 50%);
+}
+.half-right::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to left,rgba(13,45,110,0.2) 0%,transparent 50%);
+  z-index:1;
+}
+
+/* FOOTER */
+.footer{
+  height:190px;background:#0D2D6E;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;flex-shrink:0;
+  border-top:1px solid rgba(75,174,232,0.2);
+}
+.footer-left{}
+.headline{color:#fff;font-size:32px;font-weight:800;line-height:1.2;letter-spacing:-0.5px;}
+.headline em{font-style:normal;color:#4BAEE8;}
+.sub-row{
+  display:flex;align-items:center;gap:16px;margin-top:10px;
+}
+.stars{color:#FFD700;font-size:16px;}
+.dot2{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.25);}
+.sub-text{color:rgba(255,255,255,0.45);font-size:13px;font-weight:400;}
+.cta-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.cta{
+  background:#4BAEE8;color:#0D2D6E;
+  padding:18px 40px;border-radius:50px;
+  font-size:17px;font-weight:800;
+  white-space:nowrap;
+}
+.cta-note{color:rgba(255,255,255,0.25);font-size:11px;letter-spacing:1px;text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-name">Le Vitrier</div>
+      <div class="brand-tag">Lavage de vitres professionnel</div>
+    </div>
+    <div class="header-right">
+      <div class="phone-label">Contactez-nous</div>
+      <div class="phone-num">06 77 30 30 65</div>
+    </div>
+  </div>
+
+  <!-- PHOTOS -->
+  <div class="photos">
+    <div class="half half-left">
+      <img src="avant pro.jpg" alt="Avant"/>
+      <div class="pill pill-avant">Avant</div>
+    </div>
+    <div class="half half-right">
+      <img src="apres pro.jpg" alt="Après"/>
+      <div class="pill pill-apres">Après ✦</div>
+    </div>
+    <div class="vline"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="headline">Vitres impeccables,<br/><em>résultat garanti.</em></div>
+      <div class="sub-row">
+        <span class="stars">★★★★★</span>
+        <div class="dot2"></div>
+        <span class="sub-text">Nice · Cannes · Antibes · Côte d'Azur</span>
+      </div>
+    </div>
+    <div class="cta-wrap">
+      <div class="cta">Devis gratuit →</div>
+      <div class="cta-note">Sans engagement</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
