@@ -693,6 +693,8 @@ img { display: block; max-width: 100%; }
 /* Per-page BA backgrounds */
 .ba--professionnel .ba__before { background-image: url('avant%20pro.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; filter: none; }
 .ba--professionnel .ba__after  { background-image: url('apres%20pro.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.ba--pro-new .ba__before { background-image: url('avant%20particulier.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; filter: none; }
+.ba--pro-new .ba__after  { background-image: url('apres%20particulier.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .ba--particulier .ba__before  { background-image: url('Sale%20Particulier.jpg'); background-position: 100% 85%; filter: none; }
 .ba--particulier .ba__after   { background-image: url('Propre%20Particulier.jpg'); background-position: 0% 100%; }
 .ba--chantier .ba__before  { background-image: url('Avant%20Apres%20chantier.jpeg'); background-position: center 35%; filter: none; }
