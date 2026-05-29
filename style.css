@@ -2836,3 +2836,14 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   .quick-grid--5 .quick-card:nth-child(4) { grid-column: 2 / span 2; }
   .quick-grid--5 .quick-card:nth-child(5) { grid-column: 4 / span 2; }
 }
+
+/* ── Quick-grid tablette — 5 cartes centrées ────────────────── */
+@media (min-width: 641px) and (max-width: 900px) {
+  .quick-grid--5 {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  .quick-grid--5 .quick-card { grid-column: span 2; }
+  .quick-grid--5 .quick-card:nth-child(4) { grid-column: 2 / span 2; }
+  .quick-grid--5 .quick-card:nth-child(5) { grid-column: 4 / span 2; }
+}
