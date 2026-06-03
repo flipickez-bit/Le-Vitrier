@@ -794,12 +794,14 @@ img { display: block; max-width: 100%; }
 }
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 
 .contact-btn {
+  flex: 0 1 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1246,9 +1248,8 @@ img { display: block; max-width: 100%; }
 
   .sf-grid { grid-template-columns: 1fr; gap: 16px; }
 
-  .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .contact-grid .contact-btn:last-child:nth-child(3) { grid-column: 1 / -1; }
-  .contact-btn  { padding: 20px 10px; }
+  .contact-grid { gap: 10px; }
+  .contact-btn  { flex: 0 1 140px; padding: 20px 10px; }
 
   .info-section { margin-bottom: 40px; }
   .info-item {
