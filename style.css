@@ -795,7 +795,7 @@ img { display: block; max-width: 100%; }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 
@@ -1247,6 +1247,7 @@ img { display: block; max-width: 100%; }
   .sf-grid { grid-template-columns: 1fr; gap: 16px; }
 
   .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .contact-grid .contact-btn:last-child:nth-child(3) { grid-column: 1 / -1; }
   .contact-btn  { padding: 20px 10px; }
 
   .info-section { margin-bottom: 40px; }
