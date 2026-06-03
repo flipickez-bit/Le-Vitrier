@@ -370,7 +370,7 @@
       }).join('');
     }
 
-    if (window.innerWidth <= 640) { initTestiCarousel(); }
+    initTestiCarousel();
   }
 
   function initGoogleReviews() {
@@ -418,53 +418,54 @@
      Mobile uniquement (≤ 640px). Transform-based, flèches HTML.
   ───────────────────────────────────────────────────────────────── */
   function initTestiCarousel() {
-    if (window.innerWidth > 640) return;
-
-    var grid  = document.querySelector('.testi-grid');
-    var prev  = document.querySelector('.testi-arrow--prev');
-    var next  = document.querySelector('.testi-arrow--next');
-    var dots  = document.querySelectorAll('.testi-dot');
+    var grid = document.querySelector('.testi-grid');
+    var prev = document.querySelector('.testi-arrow--prev');
+    var next = document.querySelector('.testi-arrow--next');
     if (!grid || !prev || !next) return;
 
-    var cards   = grid.querySelectorAll('.testi-card');
-    var count   = cards.length;
-    var current = 0;
-    var timer;
+    var dots  = document.querySelectorAll('.testi-dot');
+    var cards = grid.querySelectorAll('.testi-card');
+    var count = cards.length;
+    if (!count) return;
+
+    /* Nettoie un éventuel timer précédent (ré-init après avis Google) */
+    if (grid._testiTimer) clearInterval(grid._testiTimer);
+
+    var w       = window.innerWidth;
+    var perView = w > 900 ? 3 : (w > 640 ? 2 : 1);
+    var maxIndex = Math.max(0, count - perView);
+    var current  = 0;
+
+    function step() {
+      var c = grid.querySelector('.testi-card');
+      if (!c) return 0;
+      var cs  = getComputedStyle(grid);
+      var gap = parseFloat(cs.columnGap || cs.gap || '0') || 0;
+      return c.offsetWidth + gap;
+    }
 
     function goTo(idx) {
-      current = (idx + count) % count;
-      var w = grid.parentElement.offsetWidth;
-      grid.style.transform = 'translateX(-' + (current * w) + 'px)';
+      current = idx > maxIndex ? 0 : (idx < 0 ? maxIndex : idx);
+      grid.style.transform = 'translateX(-' + (current * step()) + 'px)';
       dots.forEach(function (d, i) {
         d.classList.toggle('testi-dot--active', i === current);
       });
     }
 
-    function startTimer() {
-      timer = setInterval(function () { goTo(current + 1); }, 4000);
+    function start() {
+      if (grid._testiTimer) clearInterval(grid._testiTimer);
+      if (maxIndex > 0) {
+        grid._testiTimer = setInterval(function () { goTo(current + 1); }, 4000);
+      }
     }
 
-    prev.addEventListener('click', function () {
-      clearInterval(timer);
-      goTo(current - 1);
-      startTimer();
-    });
+    /* onclick (et non addEventListener) pour éviter les doublons en ré-init */
+    prev.onclick = function () { goTo(current - 1); start(); };
+    next.onclick = function () { goTo(current + 1); start(); };
+    dots.forEach(function (d, i) { d.onclick = function () { goTo(i); start(); }; });
 
-    next.addEventListener('click', function () {
-      clearInterval(timer);
-      goTo(current + 1);
-      startTimer();
-    });
-
-    dots.forEach(function (d, i) {
-      d.addEventListener('click', function () {
-        clearInterval(timer);
-        goTo(i);
-        startTimer();
-      });
-    });
-
-    startTimer();
+    goTo(0);
+    start();
   }
 
 
