@@ -705,13 +705,24 @@
     overlay.querySelector('.lv-devis-close').onclick = closeModal;
     overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
 
+    function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+
+    /* Bouton flottant : ordinateur → formulaire · téléphone → WhatsApp */
     fab.onclick = function () {
-      if (window.matchMedia('(max-width: 768px)').matches) {
-        window.open(waLink, '_blank');
-      } else {
-        overlay.classList.add('is-open');
-      }
+      if (isMobile()) { window.open(waLink, '_blank'); }
+      else { overlay.classList.add('is-open'); }
     };
+
+    /* Bouton "Votre devis" de la barre du haut : même comportement.
+       Sur téléphone, le lien WhatsApp par défaut fonctionne. */
+    document.querySelectorAll('.navbar__cta[href*="wa.me"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (!isMobile()) {
+          e.preventDefault();
+          overlay.classList.add('is-open');
+        }
+      });
+    });
 
     /* Déclenche quand le bloc des catégories est passé au-dessus de la barre du haut. */
     var nav = document.querySelector('.navbar');
