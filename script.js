@@ -713,14 +713,22 @@
       }
     };
 
-    /* En haut : barre visible, bouton caché. En défilant : barre cachée, bouton visible. */
+    /* Déclenche quand le bloc des catégories est passé au-dessus de la barre du haut. */
     var nav = document.querySelector('.navbar');
+    var ref = document.querySelector('.cards-section') || document.querySelector('.quick-grid');
     function onScroll() {
-      var down = window.scrollY > 320;
+      var navH = nav ? nav.offsetHeight : 72;
+      var down;
+      if (ref) {
+        down = ref.getBoundingClientRect().bottom <= navH;
+      } else {
+        down = window.scrollY > 320;
+      }
       fab.classList.toggle('is-visible', down);
       if (nav) nav.classList.toggle('is-hidden', down);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
     onScroll();
   }
 
