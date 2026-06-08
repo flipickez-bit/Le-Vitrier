@@ -650,22 +650,16 @@
 
   /* ── BOUTON DEVIS FLOTTANT — mobile: WhatsApp · ordinateur: formulaire ── */
   function initQuoteFab() {
-    if (document.querySelector('.lv-devis-fab')) return;
     if (!document.body) return;
+    if (document.querySelector('.lv-devis-overlay')) return;
 
     var waLink = 'https://wa.me/33763140034?text=' +
       encodeURIComponent('Bonjour, je souhaite un devis gratuit pour un nettoyage de vitres.');
 
-    var fab = document.createElement('button');
-    fab.type = 'button';
-    fab.className = 'lv-devis-fab';
-    fab.setAttribute('aria-label', 'Demander un devis gratuit');
-    fab.innerHTML =
-      "<svg viewBox='0 0 24 24' width='22' height='22' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>" +
-        "<path d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='9' y1='13' x2='15' y2='13'/><line x1='9' y1='17' x2='13' y2='17'/>" +
-      "</svg>" +
-      "<span class='lv-devis-fab__txt'>Devis gratuit</span>";
-    document.body.appendChild(fab);
+    var nav     = document.querySelector('.navbar');
+    var cards   = document.querySelector('.cards-section');   // accueil : bloc catégories
+    var contact = document.querySelector('.contact-block');   // autres pages : section contact
+    var isHome  = !!cards;
 
     /* Modal formulaire (ordinateur) */
     var overlay = document.createElement('div');
@@ -707,14 +701,7 @@
 
     function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
 
-    /* Bouton flottant : ordinateur → formulaire · téléphone → WhatsApp */
-    fab.onclick = function () {
-      if (isMobile()) { window.open(waLink, '_blank'); }
-      else { overlay.classList.add('is-open'); }
-    };
-
-    /* Bouton "Votre devis" de la barre du haut : même comportement.
-       Sur téléphone, le lien WhatsApp par défaut fonctionne. */
+    /* Bouton "Votre devis" de la barre du haut : ordinateur → formulaire · téléphone → WhatsApp */
     document.querySelectorAll('.navbar__cta[href*="wa.me"]').forEach(function (link) {
       link.addEventListener('click', function (e) {
         if (!isMobile()) {
@@ -724,19 +711,38 @@
       });
     });
 
-    /* Déclenche quand le bloc des catégories est passé au-dessus de la barre du haut. */
-    var nav = document.querySelector('.navbar');
-    var ref = document.querySelector('.cards-section') || document.querySelector('.quick-grid');
+    /* Bouton flottant : UNIQUEMENT sur la page d'accueil */
+    var fab = null;
+    if (isHome) {
+      fab = document.createElement('button');
+      fab.type = 'button';
+      fab.className = 'lv-devis-fab';
+      fab.setAttribute('aria-label', 'Demander un devis gratuit');
+      fab.innerHTML =
+        "<svg viewBox='0 0 24 24' width='22' height='22' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>" +
+          "<path d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='9' y1='13' x2='15' y2='13'/><line x1='9' y1='17' x2='13' y2='17'/>" +
+        "</svg>" +
+        "<span class='lv-devis-fab__txt'>Devis gratuit</span>";
+      document.body.appendChild(fab);
+      fab.onclick = function () {
+        if (isMobile()) { window.open(waLink, '_blank'); }
+        else { overlay.classList.add('is-open'); }
+      };
+    }
+
+    /* Comportement au scroll :
+       - Accueil : barre cachée + bouton flottant dès que les catégories atteignent la barre.
+       - Autres pages : barre visible partout, puis cachée en arrivant à la section contact. */
     function onScroll() {
       var navH = nav ? nav.offsetHeight : 72;
-      var down;
-      if (ref) {
-        down = ref.getBoundingClientRect().top <= navH;
-      } else {
-        down = window.scrollY > 320;
+      if (isHome && cards) {
+        var down = cards.getBoundingClientRect().top <= navH;
+        if (fab) fab.classList.toggle('is-visible', down);
+        if (nav) nav.classList.toggle('is-hidden', down);
+      } else if (contact) {
+        var atContact = contact.getBoundingClientRect().top <= window.innerHeight * 0.6;
+        if (nav) nav.classList.toggle('is-hidden', atContact);
       }
-      fab.classList.toggle('is-visible', down);
-      if (nav) nav.classList.toggle('is-hidden', down);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
