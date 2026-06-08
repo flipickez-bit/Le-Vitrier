@@ -696,27 +696,24 @@
       '<div class="lv-wheel-modal">' +
         '<button class="lv-wheel-close" type="button" aria-label="Fermer">×</button>' +
         '<div class="lv-wheel-title">🎁 La roue Le Vitrier</div>' +
-        '<div class="lv-wheel-sub">Tournez la roue et gagnez un bonus sur votre devis !</div>' +
+        '<div class="lv-wheel-sub">Laissez vos coordonnées, tournez la roue et recevez votre bonus !</div>' +
         '<div class="lv-wheel-stage"><div class="lv-wheel-pointer"></div>' + svg + '<div class="lv-wheel-hub">✨</div></div>' +
         '<div class="lv-wheel-result"></div>' +
-        '<button class="lv-wheel-btn lv-wheel-spin" type="button">Tourner la roue</button>' +
-        '<form class="lv-wheel-form" action="contact.php" method="POST">' +
-          '<input type="hidden" name="categorie" value="🎁 Roue cadeau" />' +
-          '<input type="hidden" name="message" class="lv-wheel-msg" value="" />' +
-          '<input type="hidden" name="email" value="" />' +
-          '<input type="text" name="nom" placeholder="Votre nom" required />' +
-          '<input type="tel" name="telephone" placeholder="Votre téléphone" required />' +
-          '<button type="submit" class="lv-wheel-btn">Je récupère mon bonus 🎉</button>' +
-          '<div class="lv-wheel-note">Bonus valable sur votre première intervention, sur présentation lors du devis.</div>' +
-        '</form>' +
+        '<div class="lv-wheel-fields">' +
+          '<input type="text" class="lv-wheel-nom" placeholder="Votre nom" required />' +
+          '<input type="tel" class="lv-wheel-tel" placeholder="Votre téléphone" required />' +
+        '</div>' +
+        '<button class="lv-wheel-btn lv-wheel-spin" type="button">Tourner la roue 🎰</button>' +
+        '<div class="lv-wheel-note">En tournant la roue, vous acceptez d\'être recontacté pour votre devis gratuit.</div>' +
       '</div>';
     document.body.appendChild(overlay);
 
     var svgEl   = overlay.querySelector('.lv-wheel-svg');
     var spinBtn = overlay.querySelector('.lv-wheel-spin');
     var resultEl = overlay.querySelector('.lv-wheel-result');
-    var formEl  = overlay.querySelector('.lv-wheel-form');
-    var msgEl   = overlay.querySelector('.lv-wheel-msg');
+    var nomEl   = overlay.querySelector('.lv-wheel-nom');
+    var telEl   = overlay.querySelector('.lv-wheel-tel');
+    var fields  = overlay.querySelector('.lv-wheel-fields');
     var spun = false;
 
     function open()  { overlay.classList.add('is-open'); }
@@ -735,9 +732,34 @@
 
     spinBtn.onclick = function () {
       if (spun) return;
+      var nom = nomEl.value.trim();
+      var tel = telEl.value.trim();
+      if (nom === '' || tel === '') {
+        fields.classList.add('lv-wheel-fields--error');
+        (nom === '' ? nomEl : telEl).focus();
+        return;
+      }
+      fields.classList.remove('lv-wheel-fields--error');
       spun = true;
       spinBtn.disabled = true;
-      var idx = weightedPick();
+      nomEl.disabled = true;
+      telEl.disabled = true;
+
+      var idx  = weightedPick();
+      var full = prizes[idx].full;
+
+      /* Capture du lead immédiate (avant même le résultat) */
+      try {
+        var fd = new FormData();
+        fd.append('nom', nom);
+        fd.append('telephone', tel);
+        fd.append('email', '');
+        fd.append('categorie', '🎁 Roue cadeau');
+        fd.append('message', 'Bonus gagné à la roue : ' + full + '. Je souhaite mon devis gratuit.');
+        fd.append('ajax', '1');
+        fetch('contact.php', { method: 'POST', body: fd }).catch(function () {});
+      } catch (e) {}
+
       var mid = idx * seg + seg / 2;
       var jitter = Math.random() * 36 - 18;
       var R = 360 * 5 + (360 - mid) + jitter;
@@ -746,10 +768,8 @@
       svgEl.style.transform = 'rotate(' + R + 'deg)';
       svgEl.addEventListener('transitionend', function once() {
         svgEl.removeEventListener('transitionend', once);
-        resultEl.textContent = '🎉 Gagné : ' + prizes[idx].full + ' !';
-        msgEl.value = 'Bonus gagné à la roue : ' + prizes[idx].full + '. Je souhaite mon devis gratuit.';
-        spinBtn.style.display = 'none';
-        formEl.classList.add('is-visible');
+        resultEl.textContent = '🎉 Gagné : ' + full + ' !';
+        spinBtn.textContent = 'On vous recontacte sous 48 h 📞';
       });
     };
 

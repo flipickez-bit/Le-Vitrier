@@ -99,7 +99,8 @@
       "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"ls ~/domains/levitrier06.fr/public_html/ | grep -i pro\")",
       "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -3\")",
       "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -2\")",
-      "Bash(node -c script.js)"
+      "Bash(node -c script.js)",
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no 'cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -1 && php -l contact.php && php -r '\\\\'' *)"
     ]
   }
 }

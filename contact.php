@@ -99,7 +99,11 @@ if (count($attachments) === 0) {
   $ok = @mail($to, $subjectEnc, $msg, $headers);
 }
 
-if ($ok) { header('Location: merci.html'); exit; }
+if ($ok) {
+  if (!empty($_POST['ajax'])) { echo 'OK'; exit; }
+  header('Location: merci.html');
+  exit;
+}
 
 http_response_code(500);
 echo "Une erreur est survenue lors de l'envoi. Appelez-nous directement au 06 77 30 30 65.";

@@ -971,15 +971,16 @@ img { display: block; max-width: 100%; }
 }
 .lv-wheel-btn:hover { background: var(--bleu-clair); transform: translateY(-2px); }
 .lv-wheel-btn:disabled { opacity: .5; cursor: default; transform: none; }
-.lv-wheel-form { display: none; flex-direction: column; gap: 10px; text-align: left; margin-top: 4px; }
-.lv-wheel-form.is-visible { display: flex; }
-.lv-wheel-form input[type="text"],
-.lv-wheel-form input[type="tel"] {
+.lv-wheel-fields { display: flex; flex-direction: column; gap: 10px; text-align: left; margin-bottom: 12px; }
+.lv-wheel-fields input {
   font-family: 'Outfit', sans-serif; font-size: .9rem; padding: 13px 15px;
   border: 1.5px solid var(--gris-mid); border-radius: var(--r-sm);
+  transition: border-color var(--t);
 }
-.lv-wheel-form input:focus { outline: none; border-color: var(--bleu-clair); }
-.lv-wheel-note { font-size: .72rem; color: var(--ink-muted); margin-top: 6px; }
+.lv-wheel-fields input:focus { outline: none; border-color: var(--bleu-clair); }
+.lv-wheel-fields input:disabled { background: var(--gris); color: var(--ink-muted); }
+.lv-wheel-fields--error input { border-color: #e5484d; }
+.lv-wheel-note { font-size: .72rem; color: var(--ink-muted); margin-top: 10px; }
 @media (max-width: 480px) {
   .lv-wheel-fab__txt { display: none; }
   .lv-wheel-fab { padding: 15px; border-radius: 50%; }
