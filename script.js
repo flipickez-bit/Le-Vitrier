@@ -710,7 +710,7 @@
             '<option>Panneaux solaires</option>' +
             '<option>Après chantier</option>' +
           '</select>' +
-          '<input type="text" class="lv-wheel-ville" placeholder="Votre ville *" />' +
+          '<input type="text" class="lv-wheel-ville" placeholder="Votre adresse *" />' +
           '<textarea class="lv-wheel-msg" placeholder="Décrivez votre besoin : surface, nombre de vitres, étage… *"></textarea>' +
         '</div>' +
         '<button class="lv-wheel-btn lv-wheel-spin" type="button">Valider et tourner la roue 🎰</button>' +
@@ -795,7 +795,7 @@
         fd.append('categorie', type);
         fd.append('message',
           '*** Demande via la ROUE CADEAU 🎁 ***\n' +
-          'Ville : ' + ville + '\n' +
+          'Adresse : ' + ville + '\n' +
           'Détails : ' + msg + '\n' +
           'Bonus gagné : ' + full);
         fd.append('ajax', '1');
