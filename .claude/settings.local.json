@@ -88,7 +88,12 @@
       "Bash(start \"\" \"C:\\\\Users\\\\xaloi\\\\Desktop\\\\Claude Code\\\\ad-C.html\")",
       "Bash(start \"\" \"C:\\\\Users\\\\xaloi\\\\Desktop\\\\Claude Code\\\\ad-story1.html\")",
       "Bash(start \"\" \"C:\\\\Users\\\\xaloi\\\\Desktop\\\\Claude Code\\\\ad-story2.html\")",
-      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main\")"
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main\")",
+      "Bash(py --version)",
+      "Bash(node -e \"require\\('sharp'\\)\")",
+      "Bash(node -e \"require\\('jimp'\\)\")",
+      "Bash(npm install *)",
+      "mcp__Claude_in_Chrome__tabs_create_mcp"
     ]
   }
 }

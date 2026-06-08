@@ -17,7 +17,7 @@
   <meta property="og:site_name"   content="Le Vitrier" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Lavage de vitres particulier","provider":{"@type":"LocalBusiness","name":"Le Vitrier","url":"https://levitrier06.fr","telephone":"+33677303065"},"areaServed":["Nice","Cannes","Antibes","Côte d'Azur"],"description":"Nettoyage de vitres pour maisons, appartements et villas. Produits biodégradables, garantie 5 jours pluie."}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
 
@@ -74,23 +74,23 @@
         <ul class="info-list">
           <li class="info-item">
             <span class="info-item__num">01</span>
+            <h3 class="info-item__title">50% de crédit d'impôt</h3>
+            <p class="info-item__text">En tant que particulier, vous bénéficiez d'un <strong>crédit d'impôt de 50%</strong> sur le coût de la prestation au titre des services à la personne — votre nettoyage de vitres vous revient <strong>deux fois moins cher</strong>.</p>
+          </li>
+          <li class="info-item">
+            <span class="info-item__num">02</span>
             <h3 class="info-item__title">Produits biodégradables</h3>
             <p class="info-item__text">Nous n'utilisons <strong>aucun produit chimique agressif</strong>. Nos solutions sont biodégradables, sans danger pour vos enfants, vos animaux et vos plantes d'intérieur.</p>
           </li>
           <li class="info-item">
-            <span class="info-item__num">02</span>
+            <span class="info-item__num">03</span>
             <h3 class="info-item__title">Toutes surfaces vitrées</h3>
             <p class="info-item__text">Fenêtres, baies vitrées, vérandas, velux, garde-corps — nous intervenons sur <strong>tout type de surface vitrée</strong>, intérieur comme extérieur.</p>
           </li>
           <li class="info-item">
-            <span class="info-item__num">03</span>
+            <span class="info-item__num">04</span>
             <h3 class="info-item__title">Sur rendez-vous, à votre rythme</h3>
             <p class="info-item__text">Intervention planifiée selon <strong>vos disponibilités</strong>. Confirmation rapide, ponctualité garantie — pas de fenêtre de 4 h d'attente.</p>
-          </li>
-          <li class="info-item">
-            <span class="info-item__num">04</span>
-            <h3 class="info-item__title">50% de crédit d'impôt</h3>
-            <p class="info-item__text">En tant que particulier, vous bénéficiez d'un <strong>crédit d'impôt de 50%</strong> sur le coût de la prestation au titre des services à la personne — une économie directe sur votre déclaration.</p>
           </li>
         </ul>
       </section>
@@ -115,6 +115,21 @@
             <span class="contact-btn__value">levitrier06@gmail.com</span>
           </a>
         </div>
+
+        <form class="contact-form" action="https://formsubmit.co/levitrier06@gmail.com" method="POST">
+          <div class="contact-form__sep">ou laissez-nous un message</div>
+          <div class="contact-form__row">
+            <input type="text" name="Nom" placeholder="Votre nom" required />
+            <input type="tel" name="Téléphone" placeholder="Votre téléphone" required />
+          </div>
+          <input type="email" name="Email" placeholder="Votre email (facultatif)" />
+          <textarea name="Message" placeholder="Votre besoin : type de surface, ville, surface approximative…" required></textarea>
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis — levitrier06.fr" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://levitrier06.fr/merci.html" />
+          <button type="submit" class="contact-form__btn">Envoyer ma demande de devis</button>
+        </form>
       </div>
 
     </div>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <title>Merci pour votre demande — Le Vitrier</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="style.css?v=5" />
+  <style>
+    .merci-wrap {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .merci-card {
+      max-width: 540px;
+    }
+    .merci-icon {
+      width: 84px; height: 84px;
+      margin: 0 auto 28px;
+      border-radius: 50%;
+      background: var(--bleu-clair);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .merci-icon svg { width: 44px; height: 44px; color: #fff; }
+    .merci-title {
+      font-size: 2rem; font-weight: 800;
+      color: var(--bleu); letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .merci-text {
+      font-size: 1rem; color: var(--ink-soft);
+      line-height: 1.7; margin-bottom: 32px;
+    }
+    .merci-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .merci-btn {
+      padding: 14px 28px; border-radius: 50px;
+      font-weight: 700; font-size: .9rem;
+      text-decoration: none; transition: all .3s;
+    }
+    .merci-btn--primary { background: var(--bleu); color: #fff; }
+    .merci-btn--primary:hover { background: var(--bleu-clair); transform: translateY(-2px); }
+    .merci-btn--ghost { border: 1.5px solid var(--gris-mid); color: var(--bleu); }
+    .merci-btn--ghost:hover { border-color: var(--bleu-clair); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">
+      <img src="Logo.png" alt="Le Vitrier" height="44" />
+    </a>
+    <div class="navbar__actions">
+      <a href="savoir-faire.html" class="navbar__cta">Notre Savoir-Faire</a>
+      <a href="tel:+33677303065" class="navbar__cta">06 77 30 30 65</a>
+    </div>
+  </nav>
+
+  <div class="merci-wrap">
+    <div class="merci-card">
+      <div class="merci-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h1 class="merci-title">Demande bien reçue !</h1>
+      <p class="merci-text">
+        Merci pour votre confiance. Nous avons bien reçu votre demande
+        et nous vous recontactons <strong>sous 48 h</strong> avec votre devis gratuit.<br><br>
+        Besoin d'une réponse plus rapide ? Appelez-nous directement.
+      </p>
+      <div class="merci-actions">
+        <a href="tel:+33677303065" class="merci-btn merci-btn--primary">📞 06 77 30 30 65</a>
+        <a href="index.html" class="merci-btn merci-btn--ghost">Retour à l'accueil</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span class="footer__brand">Le Vitrier</span>
+    <div class="footer__contacts">
+      <a href="tel:+33677303065">06 77 30 30 65</a>
+      <span class="footer__dot" aria-hidden="true"></span>
+      <a href="mailto:levitrier06@gmail.com">levitrier06@gmail.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>

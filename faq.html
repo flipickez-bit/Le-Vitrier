@@ -16,7 +16,7 @@
   <meta property="og:image"       content="https://levitrier06.fr/Logo.png" />
   <meta property="og:site_name"   content="Le Vitrier" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
 
@@ -148,6 +148,21 @@
             <span class="contact-btn__value">levitrier06@gmail.com</span>
           </a>
         </div>
+
+        <form class="contact-form" action="https://formsubmit.co/levitrier06@gmail.com" method="POST">
+          <div class="contact-form__sep">ou laissez-nous un message</div>
+          <div class="contact-form__row">
+            <input type="text" name="Nom" placeholder="Votre nom" required />
+            <input type="tel" name="Téléphone" placeholder="Votre téléphone" required />
+          </div>
+          <input type="email" name="Email" placeholder="Votre email (facultatif)" />
+          <textarea name="Message" placeholder="Votre besoin : type de surface, ville, surface approximative…" required></textarea>
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis — levitrier06.fr" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://levitrier06.fr/merci.html" />
+          <button type="submit" class="contact-form__btn">Envoyer ma demande de devis</button>
+        </form>
       </div>
 
     </div>
