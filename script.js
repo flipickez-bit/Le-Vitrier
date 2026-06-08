@@ -712,6 +712,16 @@
         overlay.classList.add('is-open');
       }
     };
+
+    /* En haut : barre visible, bouton caché. En défilant : barre cachée, bouton visible. */
+    var nav = document.querySelector('.navbar');
+    function onScroll() {
+      var down = window.scrollY > 320;
+      fab.classList.toggle('is-visible', down);
+      if (nav) nav.classList.toggle('is-hidden', down);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
 
