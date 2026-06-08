@@ -938,6 +938,7 @@ img { display: block; max-width: 100%; }
 .lv-wheel-overlay.is-open { opacity: 1; pointer-events: auto; }
 .lv-wheel-modal {
   background: #fff; border-radius: 24px; max-width: 400px; width: 100%;
+  max-height: 92vh; overflow-y: auto;
   padding: 28px 24px 30px; text-align: center; position: relative;
   box-shadow: var(--s-lg); transform: translateY(16px); transition: transform .3s;
 }
@@ -972,15 +973,42 @@ img { display: block; max-width: 100%; }
 .lv-wheel-btn:hover { background: var(--bleu-clair); transform: translateY(-2px); }
 .lv-wheel-btn:disabled { opacity: .5; cursor: default; transform: none; }
 .lv-wheel-fields { display: flex; flex-direction: column; gap: 10px; text-align: left; margin-bottom: 12px; }
-.lv-wheel-fields input {
+.lv-wheel-fields input,
+.lv-wheel-fields select,
+.lv-wheel-fields textarea {
   font-family: 'Outfit', sans-serif; font-size: .9rem; padding: 13px 15px;
   border: 1.5px solid var(--gris-mid); border-radius: var(--r-sm);
-  transition: border-color var(--t);
+  transition: border-color var(--t); background: #fff; color: var(--ink);
+  width: 100%;
 }
-.lv-wheel-fields input:focus { outline: none; border-color: var(--bleu-clair); }
-.lv-wheel-fields input:disabled { background: var(--gris); color: var(--ink-muted); }
-.lv-wheel-fields--error input { border-color: #e5484d; }
+.lv-wheel-fields textarea { resize: vertical; min-height: 80px; }
+.lv-wheel-fields select { cursor: pointer; }
+.lv-wheel-fields input:focus,
+.lv-wheel-fields select:focus,
+.lv-wheel-fields textarea:focus { outline: none; border-color: var(--bleu-clair); }
+.lv-wheel-fields input:disabled,
+.lv-wheel-fields select:disabled,
+.lv-wheel-fields textarea:disabled { background: var(--gris); color: var(--ink-muted); }
+.lv-wheel-fields--error input,
+.lv-wheel-fields--error select,
+.lv-wheel-fields--error textarea { border-color: #e5484d; }
 .lv-wheel-note { font-size: .72rem; color: var(--ink-muted); margin-top: 10px; }
+
+.lv-wheel-proba {
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--gris-mid);
+  text-align: left;
+}
+.lv-wheel-proba__title {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--ink-muted); margin-bottom: 8px; text-align: center;
+}
+.lv-wheel-proba__row {
+  display: flex; justify-content: space-between;
+  font-size: .78rem; color: var(--ink-soft);
+  padding: 3px 0;
+}
+.lv-wheel-proba__row span:last-child { font-weight: 700; color: var(--bleu); }
 @media (max-width: 480px) {
   .lv-wheel-fab__txt { display: none; }
   .lv-wheel-fab { padding: 15px; border-radius: 50%; }

@@ -700,11 +700,22 @@
         '<div class="lv-wheel-stage"><div class="lv-wheel-pointer"></div>' + svg + '<div class="lv-wheel-hub">✨</div></div>' +
         '<div class="lv-wheel-result"></div>' +
         '<div class="lv-wheel-fields">' +
-          '<input type="text" class="lv-wheel-nom" placeholder="Votre nom" required />' +
-          '<input type="tel" class="lv-wheel-tel" placeholder="Votre téléphone" required />' +
+          '<input type="text" class="lv-wheel-nom" placeholder="Votre nom *" />' +
+          '<input type="tel" class="lv-wheel-tel" placeholder="Votre téléphone *" />' +
+          '<input type="email" class="lv-wheel-email" placeholder="Votre email (facultatif)" />' +
+          '<select class="lv-wheel-type">' +
+            '<option value="">Type de prestation *</option>' +
+            '<option>Particulier</option>' +
+            '<option>Professionnel</option>' +
+            '<option>Panneaux solaires</option>' +
+            '<option>Après chantier</option>' +
+          '</select>' +
+          '<input type="text" class="lv-wheel-ville" placeholder="Votre ville *" />' +
+          '<textarea class="lv-wheel-msg" placeholder="Décrivez votre besoin : surface, nombre de vitres, étage… *"></textarea>' +
         '</div>' +
-        '<button class="lv-wheel-btn lv-wheel-spin" type="button">Tourner la roue 🎰</button>' +
-        '<div class="lv-wheel-note">En tournant la roue, vous acceptez d\'être recontacté pour votre devis gratuit.</div>' +
+        '<button class="lv-wheel-btn lv-wheel-spin" type="button">Valider et tourner la roue 🎰</button>' +
+        '<div class="lv-wheel-note">En validant, vous acceptez d\'être recontacté pour votre devis gratuit.</div>' +
+        '<div class="lv-wheel-proba"></div>' +
       '</div>';
     document.body.appendChild(overlay);
 
@@ -713,8 +724,25 @@
     var resultEl = overlay.querySelector('.lv-wheel-result');
     var nomEl   = overlay.querySelector('.lv-wheel-nom');
     var telEl   = overlay.querySelector('.lv-wheel-tel');
+    var emailEl = overlay.querySelector('.lv-wheel-email');
+    var typeEl  = overlay.querySelector('.lv-wheel-type');
+    var villeEl = overlay.querySelector('.lv-wheel-ville');
+    var msgEl   = overlay.querySelector('.lv-wheel-msg');
     var fields  = overlay.querySelector('.lv-wheel-fields');
+    var probaEl = overlay.querySelector('.lv-wheel-proba');
     var spun = false;
+
+    /* Affiche les probabilités de gain */
+    (function () {
+      var total = 0, j;
+      for (j = 0; j < n; j++) total += prizes[j].w;
+      var rows = '';
+      for (j = 0; j < n; j++) {
+        rows += '<div class="lv-wheel-proba__row"><span>' + prizes[j].full + '</span>' +
+                '<span>' + Math.round(prizes[j].w / total * 100) + '%</span></div>';
+      }
+      probaEl.innerHTML = '<div class="lv-wheel-proba__title">Probabilités de gain</div>' + rows;
+    })();
 
     function open()  { overlay.classList.add('is-open'); }
     function close() { overlay.classList.remove('is-open'); }
@@ -732,18 +760,28 @@
 
     spinBtn.onclick = function () {
       if (spun) return;
-      var nom = nomEl.value.trim();
-      var tel = telEl.value.trim();
-      if (nom === '' || tel === '') {
+      var nom   = nomEl.value.trim();
+      var tel   = telEl.value.trim();
+      var email = emailEl.value.trim();
+      var type  = typeEl.value;
+      var ville = villeEl.value.trim();
+      var msg   = msgEl.value.trim();
+
+      var firstEmpty = null;
+      if (msg === '')   firstEmpty = msgEl;
+      if (ville === '') firstEmpty = villeEl;
+      if (type === '')  firstEmpty = typeEl;
+      if (tel === '')   firstEmpty = telEl;
+      if (nom === '')   firstEmpty = nomEl;
+      if (firstEmpty) {
         fields.classList.add('lv-wheel-fields--error');
-        (nom === '' ? nomEl : telEl).focus();
+        firstEmpty.focus();
         return;
       }
       fields.classList.remove('lv-wheel-fields--error');
       spun = true;
       spinBtn.disabled = true;
-      nomEl.disabled = true;
-      telEl.disabled = true;
+      [nomEl, telEl, emailEl, typeEl, villeEl, msgEl].forEach(function (el) { el.disabled = true; });
 
       var idx  = weightedPick();
       var full = prizes[idx].full;
@@ -753,9 +791,13 @@
         var fd = new FormData();
         fd.append('nom', nom);
         fd.append('telephone', tel);
-        fd.append('email', '');
-        fd.append('categorie', '🎁 Roue cadeau');
-        fd.append('message', 'Bonus gagné à la roue : ' + full + '. Je souhaite mon devis gratuit.');
+        fd.append('email', email);
+        fd.append('categorie', type);
+        fd.append('message',
+          '*** Demande via la ROUE CADEAU 🎁 ***\n' +
+          'Ville : ' + ville + '\n' +
+          'Détails : ' + msg + '\n' +
+          'Bonus gagné : ' + full);
         fd.append('ajax', '1');
         fetch('contact.php', { method: 'POST', body: fd }).catch(function () {});
       } catch (e) {}
