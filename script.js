@@ -720,7 +720,7 @@
       var navH = nav ? nav.offsetHeight : 72;
       var down;
       if (ref) {
-        down = ref.getBoundingClientRect().bottom <= navH;
+        down = ref.getBoundingClientRect().top <= navH;
       } else {
         down = window.scrollY > 320;
       }
