@@ -646,6 +646,122 @@
   }
 
 
+  /* ── ROUE CADEAU — capteur de leads ──────────────────────────── */
+  function initSpinWheel() {
+    if (document.querySelector('.lv-wheel-fab')) return;
+    if (!document.body) return;
+
+    var prizes = [
+      { label: '-10%',       full: '-10% sur votre devis',      w: 34 },
+      { label: '1 vitre',    full: '1 vitre offerte',           w: 24 },
+      { label: '-15%',       full: '-15% sur votre devis',      w: 18 },
+      { label: '2 vitres',   full: '2 vitres offertes',         w: 12 },
+      { label: 'Diagnostic', full: 'Diagnostic gratuit',        w: 8  },
+      { label: '1 pièce',    full: 'Une pièce entière offerte', w: 4  }
+    ];
+    var n = prizes.length;
+    var seg = 360 / n;
+    var colA = '#0D2D6E', colB = '#1f4f96';
+
+    function pt(r, ang) {
+      var a = (ang - 90) * Math.PI / 180;
+      return [100 + r * Math.cos(a), 100 + r * Math.sin(a)];
+    }
+
+    var paths = '', labels = '';
+    for (var i = 0; i < n; i++) {
+      var a0 = i * seg, a1 = (i + 1) * seg;
+      var p0 = pt(95, a0), p1 = pt(95, a1);
+      paths += '<path d="M100,100 L' + p0[0].toFixed(2) + ',' + p0[1].toFixed(2) +
+               ' A95,95 0 0 1 ' + p1[0].toFixed(2) + ',' + p1[1].toFixed(2) + ' Z" fill="' +
+               (i % 2 ? colB : colA) + '"/>';
+      var mid = a0 + seg / 2;
+      labels += '<text x="100" y="40" text-anchor="middle" fill="#fff" ' +
+                'font-family="Outfit,sans-serif" font-size="11" font-weight="700" ' +
+                'transform="rotate(' + mid + ' 100 100)">' + prizes[i].label + '</text>';
+    }
+    var svg = '<svg class="lv-wheel-svg" viewBox="0 0 200 200">' + paths +
+              '<circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width="2"/>' +
+              labels + '</svg>';
+
+    var fab = document.createElement('button');
+    fab.className = 'lv-wheel-fab';
+    fab.type = 'button';
+    fab.innerHTML = '<span class="lv-wheel-fab__emoji">🎁</span><span class="lv-wheel-fab__txt">Tentez votre chance</span>';
+    document.body.appendChild(fab);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'lv-wheel-overlay';
+    overlay.innerHTML =
+      '<div class="lv-wheel-modal">' +
+        '<button class="lv-wheel-close" type="button" aria-label="Fermer">×</button>' +
+        '<div class="lv-wheel-title">🎁 La roue Le Vitrier</div>' +
+        '<div class="lv-wheel-sub">Tournez la roue et gagnez un bonus sur votre devis !</div>' +
+        '<div class="lv-wheel-stage"><div class="lv-wheel-pointer"></div>' + svg + '<div class="lv-wheel-hub">✨</div></div>' +
+        '<div class="lv-wheel-result"></div>' +
+        '<button class="lv-wheel-btn lv-wheel-spin" type="button">Tourner la roue</button>' +
+        '<form class="lv-wheel-form" action="contact.php" method="POST">' +
+          '<input type="hidden" name="categorie" value="🎁 Roue cadeau" />' +
+          '<input type="hidden" name="message" class="lv-wheel-msg" value="" />' +
+          '<input type="hidden" name="email" value="" />' +
+          '<input type="text" name="nom" placeholder="Votre nom" required />' +
+          '<input type="tel" name="telephone" placeholder="Votre téléphone" required />' +
+          '<button type="submit" class="lv-wheel-btn">Je récupère mon bonus 🎉</button>' +
+          '<div class="lv-wheel-note">Bonus valable sur votre première intervention, sur présentation lors du devis.</div>' +
+        '</form>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    var svgEl   = overlay.querySelector('.lv-wheel-svg');
+    var spinBtn = overlay.querySelector('.lv-wheel-spin');
+    var resultEl = overlay.querySelector('.lv-wheel-result');
+    var formEl  = overlay.querySelector('.lv-wheel-form');
+    var msgEl   = overlay.querySelector('.lv-wheel-msg');
+    var spun = false;
+
+    function open()  { overlay.classList.add('is-open'); }
+    function close() { overlay.classList.remove('is-open'); }
+    fab.onclick = open;
+    overlay.querySelector('.lv-wheel-close').onclick = close;
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+    function weightedPick() {
+      var total = 0, k;
+      for (k = 0; k < n; k++) total += prizes[k].w;
+      var r = Math.random() * total;
+      for (k = 0; k < n; k++) { r -= prizes[k].w; if (r < 0) return k; }
+      return 0;
+    }
+
+    spinBtn.onclick = function () {
+      if (spun) return;
+      spun = true;
+      spinBtn.disabled = true;
+      var idx = weightedPick();
+      var mid = idx * seg + seg / 2;
+      var jitter = Math.random() * 36 - 18;
+      var R = 360 * 5 + (360 - mid) + jitter;
+      svgEl.classList.add('is-spinning');
+      void svgEl.offsetWidth;
+      svgEl.style.transform = 'rotate(' + R + 'deg)';
+      svgEl.addEventListener('transitionend', function once() {
+        svgEl.removeEventListener('transitionend', once);
+        resultEl.textContent = '🎉 Gagné : ' + prizes[idx].full + ' !';
+        msgEl.value = 'Bonus gagné à la roue : ' + prizes[idx].full + '. Je souhaite mon devis gratuit.';
+        spinBtn.style.display = 'none';
+        formEl.classList.add('is-visible');
+      });
+    };
+
+    /* Ouverture auto une seule fois, après 12 s */
+    try {
+      if (!localStorage.getItem('lv_wheel_seen')) {
+        setTimeout(function () { open(); localStorage.setItem('lv_wheel_seen', '1'); }, 12000);
+      }
+    } catch (e) {}
+  }
+
+
   /* ── INIT ─────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initReveal();
@@ -662,6 +778,7 @@
     initNavbar();
     initFullPage();
     initContactFiles();
+    initSpinWheel();
   });
 
 })();
