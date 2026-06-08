@@ -73,7 +73,7 @@ img { display: block; max-width: 100%; }
   position: fixed;
   inset-inline: 0;
   top: 0;
-  z-index: 100;
+  z-index: 19; /* sous les cartes catégories (z-index 20) : la barre disparaît derrière elles */
   height: var(--nav-h);
   display: flex;
   align-items: center;
