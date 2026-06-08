@@ -598,6 +598,54 @@
   }
 
 
+  /* ── PHOTOS FORMULAIRE — cumul jusqu'à 5 ─────────────────────── */
+  function initContactFiles() {
+    var MAX = 5;
+    document.querySelectorAll('.contact-form input[type="file"]').forEach(function (input) {
+      if (typeof DataTransfer === 'undefined') return; // navigateur trop ancien : champ standard
+      var store = new DataTransfer();
+
+      var list = document.createElement('div');
+      list.className = 'contact-form__filelist';
+      input.insertAdjacentElement('afterend', list);
+
+      function render() {
+        list.innerHTML = '';
+        Array.prototype.forEach.call(store.files, function (file, i) {
+          var chip = document.createElement('span');
+          chip.className = 'contact-form__chip';
+          chip.textContent = file.name.length > 22 ? file.name.slice(0, 20) + '…' : file.name;
+
+          var rm = document.createElement('button');
+          rm.type = 'button';
+          rm.className = 'contact-form__chip-rm';
+          rm.setAttribute('aria-label', 'Retirer');
+          rm.textContent = '×';
+          rm.onclick = function () {
+            var next = new DataTransfer();
+            Array.prototype.forEach.call(store.files, function (f, j) { if (j !== i) next.items.add(f); });
+            store = next;
+            input.files = store.files;
+            render();
+          };
+          chip.appendChild(rm);
+          list.appendChild(chip);
+        });
+      }
+
+      input.addEventListener('change', function () {
+        Array.prototype.forEach.call(input.files, function (f) {
+          if (store.files.length < MAX && f.type.indexOf('image') === 0) {
+            store.items.add(f);
+          }
+        });
+        input.files = store.files;
+        render();
+      });
+    });
+  }
+
+
   /* ── INIT ─────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initReveal();
@@ -613,6 +661,7 @@
     initCarousels();
     initNavbar();
     initFullPage();
+    initContactFiles();
   });
 
 })();

@@ -93,7 +93,12 @@
       "Bash(node -e \"require\\('sharp'\\)\")",
       "Bash(node -e \"require\\('jimp'\\)\")",
       "Bash(npm install *)",
-      "mcp__Claude_in_Chrome__tabs_create_mcp"
+      "mcp__Claude_in_Chrome__tabs_create_mcp",
+      "Bash(git rm *)",
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -5 && rm -rf node_modules && echo 'SERVER CLEAN'\")",
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"ls ~/domains/levitrier06.fr/public_html/ | grep -i pro\")",
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -3\")",
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -2\")"
     ]
   }
 }

@@ -878,6 +878,39 @@ img { display: block; max-width: 100%; }
   transition: background var(--t);
 }
 .contact-form input[type="file"]::file-selector-button:hover { background: var(--bleu-clair); }
+.contact-form__filelist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.contact-form__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bleu);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 600;
+  padding: 6px 8px 6px 14px;
+  border-radius: 50px;
+}
+.contact-form__chip-rm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .25);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--t);
+}
+.contact-form__chip-rm:hover { background: rgba(255, 255, 255, .45); }
 .contact-form__btn {
   margin-top: 4px;
   padding: 16px 24px;
