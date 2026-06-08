@@ -17,7 +17,7 @@
   <meta property="og:site_name"   content="Le Vitrier" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Nettoyage vitres après chantier","provider":{"@type":"LocalBusiness","name":"Le Vitrier","url":"https://levitrier06.fr","telephone":"+33677303065"},"areaServed":["Nice","Cannes","Antibes","Côte d'Azur"],"description":"Nettoyage de vitres après travaux : plâtre, peinture, silicone, béton éliminés sans rayer le verre."}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 
@@ -128,14 +128,19 @@
           </a>
         </div>
 
-        <form class="contact-form" action="contact.php" method="POST">
+        <form class="contact-form" action="contact.php" method="POST" enctype="multipart/form-data">
           <div class="contact-form__sep">ou laissez-nous un message</div>
+          <input type="hidden" name="categorie" value="Après chantier" />
           <div class="contact-form__row">
             <input type="text" name="nom" placeholder="Votre nom" required />
             <input type="tel" name="telephone" placeholder="Votre téléphone" required />
           </div>
           <input type="email" name="email" placeholder="Votre email (facultatif)" />
           <textarea name="message" placeholder="Votre besoin : type de surface, ville, surface approximative…" required></textarea>
+          <label class="contact-form__file">
+            <span class="contact-form__file-label">📷 Ajouter des photos (facultatif)</span>
+            <input type="file" name="photos[]" accept="image/*" multiple />
+          </label>
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
           <button type="submit" class="contact-form__btn">Envoyer ma demande de devis</button>
         </form>
