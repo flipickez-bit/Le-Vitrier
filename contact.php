@@ -18,9 +18,9 @@ $email     = isset($_POST['email'])     ? lv_clean($_POST['email'])     : '';
 $message   = isset($_POST['message'])   ? trim($_POST['message'])       : '';
 $categorie = isset($_POST['categorie']) ? lv_clean($_POST['categorie']) : 'Général';
 
-if ($nom === '' || $telephone === '' || $message === '') {
+if ($nom === '' || $telephone === '' || $email === '' || $message === '') {
   http_response_code(400);
-  echo 'Merci de remplir votre nom, votre téléphone et votre message.';
+  echo 'Merci de remplir votre nom, votre téléphone, votre email et votre message.';
   exit;
 }
 
