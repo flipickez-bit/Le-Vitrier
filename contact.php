@@ -73,7 +73,7 @@ if (count($attachments) === 0) {
   $headers .= $replyTo;
   $headers .= "MIME-Version: 1.0\r\n";
   $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-  $ok = @mail($to, $subjectEnc, $body, $headers);
+  $ok = @mail($to, $subjectEnc, $body, $headers, '-fno-reply@levitrier06.fr');
 } else {
   /* Email multipart avec pièces jointes */
   $boundary = '=_lv_' . md5(uniqid((string) time(), true));
@@ -96,7 +96,7 @@ if (count($attachments) === 0) {
   }
   $msg .= "--" . $boundary . "--";
 
-  $ok = @mail($to, $subjectEnc, $msg, $headers);
+  $ok = @mail($to, $subjectEnc, $msg, $headers, '-fno-reply@levitrier06.fr');
 }
 
 if ($ok) {
