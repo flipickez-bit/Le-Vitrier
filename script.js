@@ -652,12 +652,12 @@
     if (!document.body) return;
 
     var prizes = [
-      { label: '-10%',       full: '-10% sur votre devis',      w: 34 },
-      { label: '1 vitre',    full: '1 vitre offerte',           w: 24 },
-      { label: '-15%',       full: '-15% sur votre devis',      w: 18 },
-      { label: '2 vitres',   full: '2 vitres offertes',         w: 12 },
-      { label: 'Diagnostic', full: 'Diagnostic gratuit',        w: 8  },
-      { label: '1 pièce',    full: 'Une pièce entière offerte', w: 4  }
+      { label: '-10%',    full: '-10% sur votre devis',      w: 30 },
+      { label: '-15%',    full: '-15% sur votre devis',      w: 22 },
+      { label: '1 baie',  full: 'Une baie vitrée offerte',   w: 17 },
+      { label: '-20%',    full: '-20% sur votre devis',      w: 13 },
+      { label: '1 vitre', full: 'Une vitre offerte',         w: 14 },
+      { label: '1 pièce', full: 'Une pièce entière offerte', w: 4  }
     ];
     var n = prizes.length;
     var seg = 360 / n;
