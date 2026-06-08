@@ -122,18 +122,15 @@
           </a>
         </div>
 
-        <form class="contact-form" action="https://formsubmit.co/levitrier06@gmail.com" method="POST">
+        <form class="contact-form" action="contact.php" method="POST">
           <div class="contact-form__sep">ou laissez-nous un message</div>
           <div class="contact-form__row">
-            <input type="text" name="Nom" placeholder="Votre nom" required />
-            <input type="tel" name="Téléphone" placeholder="Votre téléphone" required />
+            <input type="text" name="nom" placeholder="Votre nom" required />
+            <input type="tel" name="telephone" placeholder="Votre téléphone" required />
           </div>
-          <input type="email" name="Email" placeholder="Votre email (facultatif)" />
-          <textarea name="Message" placeholder="Votre besoin : type de surface, ville, surface approximative…" required></textarea>
-          <input type="hidden" name="_subject" value="Nouvelle demande de devis — levitrier06.fr" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://levitrier06.fr/merci.html" />
+          <input type="email" name="email" placeholder="Votre email (facultatif)" />
+          <textarea name="message" placeholder="Votre besoin : type de surface, ville, surface approximative…" required></textarea>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
           <button type="submit" class="contact-form__btn">Envoyer ma demande de devis</button>
         </form>
       </div>
