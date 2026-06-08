@@ -734,15 +734,11 @@
        - Accueil : barre cachée + bouton flottant dès que les catégories atteignent la barre.
        - Autres pages : barre visible partout, puis cachée en arrivant à la section contact. */
     function onScroll() {
+      if (!isHome || !cards) return; // autres pages : la barre reste toujours visible
       var navH = nav ? nav.offsetHeight : 72;
-      if (isHome && cards) {
-        var down = cards.getBoundingClientRect().top <= navH;
-        if (fab) fab.classList.toggle('is-visible', down);
-        if (nav) nav.classList.toggle('is-hidden', down);
-      } else if (contact) {
-        var atContact = contact.getBoundingClientRect().top <= window.innerHeight * 0.6;
-        if (nav) nav.classList.toggle('is-hidden', atContact);
-      }
+      var down = cards.getBoundingClientRect().top <= navH;
+      if (fab) fab.classList.toggle('is-visible', down);
+      if (nav) nav.classList.toggle('is-hidden', down);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });

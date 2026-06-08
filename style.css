@@ -140,6 +140,15 @@ img { display: block; max-width: 100%; }
 .navbar__cta:hover::before { transform: scaleX(1); }
 .navbar__cta:active { transform: scale(0.98); }
 
+/* Bouton "Votre devis" — vert */
+.navbar__cta[href*="wa.me"] {
+  background: #25D366;
+  border-color: #25D366;
+  color: #fff;
+}
+.navbar__cta[href*="wa.me"]::before { background: #1ebe5d; }
+.navbar__cta[href*="wa.me"]:hover { color: #fff; }
+
 
 
 /* ================================================================
