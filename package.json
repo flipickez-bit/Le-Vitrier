@@ -1,7 +1,0 @@
-{
-  "devDependencies": {
-    "jimp": "^0.22.12",
-    "qrcode": "^1.5.4",
-    "sharp": "^0.34.5"
-  }
-}
