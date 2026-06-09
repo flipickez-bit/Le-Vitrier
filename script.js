@@ -671,7 +671,12 @@
         '<button class="lv-devis-close" type="button" aria-label="Fermer">×</button>' +
         '<div class="lv-devis-title">Demandez votre devis gratuit</div>' +
         '<div class="lv-devis-sub">Réponse sous 48 h · sans engagement</div>' +
-        '<form class="contact-form" action="contact.php" method="POST" enctype="multipart/form-data">' +
+        '<form class="contact-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">' +
+          '<input type="hidden" name="access_key" value="3675748c-2323-4c16-a420-23d18e251b22" />' +
+          '<input type="hidden" name="subject" value="Demande de devis (bouton) - levitrier06.fr" />' +
+          '<input type="hidden" name="from_name" value="Site Le Vitrier" />' +
+          '<input type="hidden" name="redirect" value="https://levitrier06.fr/merci.html" />' +
+          '<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />' +
           '<div class="contact-form__row">' +
             '<input type="text" name="nom" placeholder="Votre nom" required />' +
             '<input type="tel" name="telephone" placeholder="Votre téléphone" required />' +
