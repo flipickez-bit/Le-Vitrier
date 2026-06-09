@@ -765,12 +765,22 @@
     var verdictEl = document.getElementById('simVerdict');
     if (!panels) return;
 
-    var PRICE_PER_PANEL = 7;    // € par panneau
-    var MIN_PRICE       = 80;   // € minimum d'intervention
-    var PROD_PER_PANEL  = 520;  // kWh/an par panneau (PACA)
-    var ELEC_PRICE      = 0.20; // € par kWh
-    var tiltCost = { plat: 1, moyenne: 1.05, forte: 1.2 };
+    var MIN_PRICE      = 80;   // € minimum d'intervention
+    var PROD_PER_PANEL = 520;  // kWh/an par panneau (PACA)
+    var ELEC_PRICE     = 0.20; // € par kWh
+    var tiltCost = { plat: 1, moyenne: 1.07, forte: 1.18 };  // toit pentu = +%
     var tiltSoil = { plat: 1.2, moyenne: 1.0, forte: 0.85 };
+    var SOIL     = [0.05, 0.10, 0.18, 0.28];  // perte récupérée selon ancienneté
+    var LASTCOST = [1.0, 1.06, 1.13, 1.22];   // dernier lavage ancien = +%
+
+    /* Tarif par paliers : 10 premiers à 11€, 5 suivants à 10€, reste à 9€ */
+    function basePrice(n) {
+      var t1 = Math.min(n, 10);
+      var t2 = Math.min(Math.max(n - 10, 0), 5);
+      var t3 = Math.max(n - 15, 0);
+      return t1 * 11 + t2 * 10 + t3 * 9;
+    }
+    function roundUp5(n) { return Math.ceil(n / 5) * 5; }
 
     function eur(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
     function kwh(n) { return Math.round(n).toLocaleString('fr-FR') + ' kWh'; }
@@ -778,11 +788,13 @@
     function compute() {
       var n    = parseInt(panels.value, 10);
       var acc  = parseFloat(access.value);
-      var soil = parseFloat(last.value);
+      var li   = last.selectedIndex;
+      var soil = SOIL[li];
       var t    = tilt.value;
       panelsOut.textContent = n;
 
-      var cost  = Math.max(MIN_PRICE, n * PRICE_PER_PANEL * acc * (tiltCost[t] || 1));
+      var raw   = basePrice(n) * acc * (tiltCost[t] || 1) * (LASTCOST[li] || 1);
+      var cost  = roundUp5(Math.max(MIN_PRICE, raw));
       var recov = n * PROD_PER_PANEL * soil * (tiltSoil[t] || 1);
       var gain  = recov * ELEC_PRICE;
 
