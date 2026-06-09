@@ -770,8 +770,9 @@
     var ELEC_PRICE     = 0.20; // € par kWh
     var tiltCost = { plat: 1, moyenne: 1.07, forte: 1.18 };  // toit pentu = +%
     var tiltSoil = { plat: 1.2, moyenne: 1.0, forte: 0.85 };
-    var SOIL     = [0.05, 0.10, 0.18, 0.28];  // perte récupérée selon ancienneté
-    var LASTCOST = [1.0, 1.06, 1.13, 1.22];   // dernier lavage ancien = +%
+    /* Gain réel récupéré (climat méditerranéen Côte d'Azur) : 6 mois / 1 an / 2 ans+ */
+    var SOIL     = [0.04, 0.08, 0.14];  // 4% / 8% / 14% de production récupérée
+    var LASTCOST = [1.0, 1.08, 1.18];   // dépôt plus ancien = nettoyage un peu plus cher
 
     /* Tarif par paliers : 10 premiers à 11€, 5 suivants à 10€, reste à 9€ */
     function basePrice(n) {
