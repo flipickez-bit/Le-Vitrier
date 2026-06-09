@@ -671,30 +671,26 @@
         '<button class="lv-devis-close" type="button" aria-label="Fermer">×</button>' +
         '<div class="lv-devis-title">Demandez votre devis gratuit</div>' +
         '<div class="lv-devis-sub">Réponse sous 48 h · sans engagement</div>' +
-        '<form class="contact-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">' +
+        '<form class="contact-form" action="https://api.web3forms.com/submit" method="POST">' +
           '<input type="hidden" name="access_key" value="3675748c-2323-4c16-a420-23d18e251b22" />' +
           '<input type="hidden" name="subject" value="Demande de devis (bouton) - levitrier06.fr" />' +
           '<input type="hidden" name="from_name" value="Site Le Vitrier" />' +
           '<input type="hidden" name="redirect" value="https://levitrier06.fr/merci.html" />' +
           '<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />' +
-          '<div class="contact-form__row">' +
-            '<input type="text" name="nom" placeholder="Votre nom" required />' +
-            '<input type="tel" name="telephone" placeholder="Votre téléphone" required />' +
-          '</div>' +
-          '<input type="email" name="email" placeholder="Votre email" required />' +
-          '<select name="categorie" required>' +
-            '<option value="">Type de prestation</option>' +
+          '<select name="Secteur" required>' +
+            '<option value="">Secteur *</option>' +
             '<option>Particulier</option>' +
             '<option>Professionnel</option>' +
             '<option>Panneaux solaires</option>' +
             '<option>Après chantier</option>' +
           '</select>' +
-          '<textarea name="message" placeholder="Votre besoin : adresse, surface, nombre de vitres, étage…" required></textarea>' +
-          '<label class="contact-form__file">' +
-            '<span class="contact-form__file-label">📷 Ajouter des photos (jusqu\'à 5, facultatif)</span>' +
-            '<input type="file" name="photos[]" accept="image/*" multiple />' +
-          '</label>' +
-          '<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />' +
+          '<div class="contact-form__row">' +
+            '<input type="text" name="Nom" placeholder="Votre nom *" required />' +
+            '<input type="tel" name="Telephone" placeholder="Votre téléphone *" required />' +
+          '</div>' +
+          '<input type="email" name="email" placeholder="Votre email *" required />' +
+          '<input type="text" name="Adresse" placeholder="Adresse du chantier *" required />' +
+          '<textarea name="Description" placeholder="Description du chantier : surface, nombre de vitres, étage, accès…" required></textarea>' +
           '<button type="submit" class="contact-form__btn">Envoyer ma demande</button>' +
         '</form>' +
       '</div>';
