@@ -778,9 +778,9 @@
     var ELEC_PRICE     = 0.20; // € par kWh
     var tiltCost = { plat: 1, moyenne: 1.07, forte: 1.18 };  // toit pentu = +%
     var tiltSoil = { plat: 1.2, moyenne: 1.0, forte: 0.85 };
-    /* Gain récupéré selon l'ancienneté : 6 mois / 1 an / 2 ans+ */
-    var SOIL     = [0.12, 0.22, 0.30];  // 12% / 22% / 30% de production récupérée
-    var LASTCOST = [1.0, 1.08, 1.18];   // dépôt plus ancien = nettoyage un peu plus cher
+    /* Gain récupéré selon l'ancienneté : 1 an / 2 ans+ */
+    var SOIL     = [0.22, 0.30];  // 22% / 30% de production récupérée
+    var LASTCOST = [1.08, 1.18];  // dépôt plus ancien = nettoyage un peu plus cher
 
     /* Tarif par paliers : 10 premiers à 11€, 5 suivants à 10€, reste à 9€ */
     function basePrice(n) {
