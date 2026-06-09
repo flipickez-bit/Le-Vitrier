@@ -17,7 +17,7 @@
   <meta property="og:site_name"   content="Le Vitrier" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Nettoyage panneaux solaires","provider":{"@type":"LocalBusiness","name":"Le Vitrier","url":"https://levitrier06.fr","telephone":"+33677303065"},"areaServed":["Nice","Cannes","Antibes","Côte d'Azur"],"description":"Nettoyage de panneaux solaires à l'eau osmosée pure. Sans produit chimique. Rendement optimisé jusqu'à +30%."}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="style.css?v=25" />
+  <link rel="stylesheet" href="style.css?v=29" />
 </head>
 <body>
 
@@ -101,109 +101,87 @@
         </ul>
       </section>
 
-      <!-- ── SIMULATEUR DE RENTABILITÉ ──────────────────────────── -->
+            <!-- ── SIMULATEUR + DEVIS ──────────────────────────── -->
       <section class="solar-sim" id="solarSim">
         <span class="info-section__label">Simulateur instantané</span>
-        <h2 class="solar-sim__title">Coût &amp; rentabilité de votre nettoyage</h2>
-        <p class="solar-sim__sub">Estimez en 10 secondes le prix de la prestation et ce qu'elle vous rapporte sur 1 an.</p>
+        <h2 class="solar-sim__title">Estimez le coût et le gain de votre nettoyage</h2>
+        <p class="solar-sim__sub">Réglez vos paramètres, laissez vos coordonnées : votre estimation s’affiche aussitôt et on vous envoie le devis détaillé.</p>
 
-        <div class="solar-sim__grid">
-          <div class="solar-sim__controls">
-            <label class="solar-sim__field">
-              <span class="solar-sim__label">Nombre de panneaux <strong id="simPanelsOut">12</strong></span>
-              <input type="range" id="simPanels" min="1" max="40" value="12" />
-            </label>
-            <label class="solar-sim__field">
-              <span class="solar-sim__label">Accès au toit</span>
-              <select id="simAccess">
-                <option value="1">Facile — plain-pied, terrasse</option>
-                <option value="1.15" selected>Moyen — étage, échelle</option>
-                <option value="1.35">Difficile — hauteur, nacelle</option>
-              </select>
-            </label>
-            <label class="solar-sim__field">
-              <span class="solar-sim__label">Dernier nettoyage</span>
-              <select id="simLast">
-                <option>6 mois</option>
-                <option selected>1 an</option>
-                <option>2 ans et +</option>
-              </select>
-            </label>
-            <label class="solar-sim__field">
-              <span class="solar-sim__label">Inclinaison du toit</span>
-              <select id="simTilt">
-                <option value="plat">Plat / faible</option>
-                <option value="moyenne" selected>Moyenne</option>
-                <option value="forte">Forte</option>
-              </select>
-            </label>
-          </div>
+        <form class="solar-sim__form" id="simForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="3675748c-2323-4c16-a420-23d18e251b22" />
+          <input type="hidden" name="subject" value="Simulateur panneaux solaires - levitrier06.fr" />
+          <input type="hidden" name="from_name" value="Site Le Vitrier" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="Secteur" value="Panneaux solaires" />
+          <input type="hidden" name="Nombre_de_panneaux" id="hidPanels" />
+          <input type="hidden" name="Acces" id="hidAccess" />
+          <input type="hidden" name="Dernier_nettoyage" id="hidLast" />
+          <input type="hidden" name="Inclinaison" id="hidTilt" />
+          <input type="hidden" name="Cout_estime" id="hidCost" />
+          <input type="hidden" name="Gain_estime_par_an" id="hidGain" />
 
-          <div class="solar-sim__results">
-            <div class="solar-sim__result">
-              <span class="solar-sim__result-label">Coût estimé du nettoyage</span>
-              <span class="solar-sim__result-value" id="simCost">—</span>
+          <div class="solar-sim__grid">
+            <div class="solar-sim__controls">
+              <label class="solar-sim__field">
+                <span class="solar-sim__label">Nombre de panneaux <strong id="simPanelsOut">12</strong></span>
+                <input type="range" id="simPanels" min="1" max="40" value="12" />
+              </label>
+              <label class="solar-sim__field">
+                <span class="solar-sim__label">Accès au toit</span>
+                <select id="simAccess">
+                  <option value="1">Facile — plain-pied, terrasse</option>
+                  <option value="1.15" selected>Moyen — étage, échelle</option>
+                  <option value="1.35">Difficile — hauteur, nacelle</option>
+                </select>
+              </label>
+              <label class="solar-sim__field">
+                <span class="solar-sim__label">Dernier nettoyage</span>
+                <select id="simLast">
+                  <option>6 mois</option>
+                  <option selected>1 an</option>
+                  <option>2 ans et +</option>
+                </select>
+              </label>
+              <label class="solar-sim__field">
+                <span class="solar-sim__label">Inclinaison du toit</span>
+                <select id="simTilt">
+                  <option value="plat">Plat / faible</option>
+                  <option value="moyenne" selected>Moyenne</option>
+                  <option value="forte">Forte</option>
+                </select>
+              </label>
             </div>
-            <div class="solar-sim__result">
-              <span class="solar-sim__result-label">Production récupérée / an</span>
-              <span class="solar-sim__result-value" id="simKwh">—</span>
+
+            <div class="solar-sim__controls solar-sim__contact">
+              <span class="solar-sim__label">Vos coordonnées pour recevoir le devis</span>
+              <input type="text" name="Nom" placeholder="Nom et prénom *" required />
+              <input type="text" name="Adresse" placeholder="Adresse *" required />
+              <input type="email" name="email" placeholder="Email *" required />
+              <input type="tel" name="Telephone" placeholder="Téléphone *" required />
+              <button type="submit" class="solar-sim__cta">Voir mon estimation &amp; recevoir le devis</button>
             </div>
-            <div class="solar-sim__result solar-sim__result--hl">
-              <span class="solar-sim__result-label">Gain estimé / an</span>
-              <span class="solar-sim__result-value" id="simGain">—</span>
-            </div>
-            <div class="solar-sim__verdict" id="simVerdict">—</div>
-            <a href="https://wa.me/33763140034?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20le%20nettoyage%20de%20mes%20panneaux%20solaires." class="solar-sim__cta navbar__cta" target="_blank" rel="noopener">Demander mon devis</a>
           </div>
+        </form>
+
+        <div class="solar-sim__results" id="simResults" hidden>
+          <div class="solar-sim__result">
+            <span class="solar-sim__result-label">Coût estimé du nettoyage</span>
+            <span class="solar-sim__result-value" id="simCost">—</span>
+          </div>
+          <div class="solar-sim__result">
+            <span class="solar-sim__result-label">Production récupérée / an</span>
+            <span class="solar-sim__result-value" id="simKwh">—</span>
+          </div>
+          <div class="solar-sim__result solar-sim__result--hl">
+            <span class="solar-sim__result-label">Gain estimé / an</span>
+            <span class="solar-sim__result-value" id="simGain">—</span>
+          </div>
+          <div class="solar-sim__verdict" id="simVerdict">—</div>
+          <div class="solar-sim__sent">✅ Demande envoyée — on vous recontacte sous 48 h avec le devis détaillé.</div>
         </div>
+
         <p class="solar-sim__note">Estimation indicative (production moyenne en région PACA, ~520 kWh/panneau/an, électricité 0,20 €/kWh). Le tarif exact est confirmé lors du devis gratuit.</p>
       </section>
-
-      <div class="contact-block">
-        <h3 class="contact-block__title">Demandez votre devis</h3>
-        <p class="contact-block__sub">Réponse sous 48 h · gratuit · sans engagement · disponible jusqu'à 20h30</p>
-        <div class="contact-grid">
-          <a href="tel:+33677303065" class="contact-btn">
-            <span class="contact-btn__icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span>
-            <span class="contact-btn__label">Appeler</span>
-            <span class="contact-btn__value">06 77 30 30 65</span>
-          </a>
-          <a href="https://wa.me/33763140034" class="contact-btn contact-btn--whatsapp" target="_blank" rel="noopener">
-            <span class="contact-btn__icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
-            <span class="contact-btn__label">WhatsApp</span>
-            <span class="contact-btn__value">07 63 14 00 34</span>
-          </a>
-          <a href="mailto:levitrier06@gmail.com" class="contact-btn">
-            <span class="contact-btn__icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
-            <span class="contact-btn__label">Email</span>
-            <span class="contact-btn__value">levitrier06@gmail.com</span>
-          </a>
-        </div>
-
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="3675748c-2323-4c16-a420-23d18e251b22" />
-          <input type="hidden" name="subject" value="Nouvelle demande de devis - levitrier06.fr" />
-          <input type="hidden" name="from_name" value="Site Le Vitrier" />
-          <input type="hidden" name="redirect" value="https://levitrier06.fr/merci.html" />
-          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-          <div class="contact-form__sep">ou demandez votre devis</div>
-          <select name="Secteur" required>
-            <option value="">Secteur *</option>
-            <option>Particulier</option>
-            <option>Professionnel</option>
-            <option>Panneaux solaires</option>
-            <option>Après chantier</option>
-          </select>
-          <div class="contact-form__row">
-            <input type="text" name="Nom" placeholder="Votre nom *" required />
-            <input type="tel" name="Telephone" placeholder="Votre téléphone *" required />
-          </div>
-          <input type="email" name="email" placeholder="Votre email *" required />
-          <input type="text" name="Adresse" placeholder="Adresse du chantier *" required />
-          <textarea name="Description" placeholder="Description du chantier : surface, nombre de vitres, étage, accès…" required></textarea>
-          <button type="submit" class="contact-form__btn">Envoyer ma demande de devis</button>
-        </form>
-      </div>
 
     </div>
   </main>
@@ -233,6 +211,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=28"></script>
+  <script src="script.js?v=29"></script>
 </body>
 </html>

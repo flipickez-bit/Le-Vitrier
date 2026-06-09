@@ -754,16 +754,24 @@
     var root = document.getElementById('solarSim');
     if (!root) return;
 
+    var form      = document.getElementById('simForm');
     var panels    = document.getElementById('simPanels');
     var panelsOut = document.getElementById('simPanelsOut');
     var access    = document.getElementById('simAccess');
     var last      = document.getElementById('simLast');
     var tilt      = document.getElementById('simTilt');
+    var results   = document.getElementById('simResults');
     var costEl    = document.getElementById('simCost');
     var kwhEl     = document.getElementById('simKwh');
     var gainEl    = document.getElementById('simGain');
     var verdictEl = document.getElementById('simVerdict');
-    if (!panels) return;
+    var hidPanels = document.getElementById('hidPanels');
+    var hidAccess = document.getElementById('hidAccess');
+    var hidLast   = document.getElementById('hidLast');
+    var hidTilt   = document.getElementById('hidTilt');
+    var hidCost   = document.getElementById('hidCost');
+    var hidGain   = document.getElementById('hidGain');
+    if (!panels || !form) return;
 
     var MIN_PRICE      = 80;   // € minimum d'intervention
     var PROD_PER_PANEL = 520;  // kWh/an par panneau (PACA)
@@ -786,38 +794,66 @@
     function eur(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
     function kwh(n) { return Math.round(n).toLocaleString('fr-FR') + ' kWh'; }
 
-    function compute() {
+    function calc() {
       var n    = parseInt(panels.value, 10);
       var acc  = parseFloat(access.value);
       var li   = last.selectedIndex;
       var soil = SOIL[li];
       var t    = tilt.value;
-      panelsOut.textContent = n;
-
       var raw   = basePrice(n) * acc * (tiltCost[t] || 1) * (LASTCOST[li] || 1);
       var cost  = roundUp5(Math.max(MIN_PRICE, raw));
       var recov = n * PROD_PER_PANEL * soil * (tiltSoil[t] || 1);
       var gain  = recov * ELEC_PRICE;
-
-      costEl.textContent = eur(cost);
-      kwhEl.textContent  = kwh(recov);
-      gainEl.textContent = eur(gain) + ' /an';
-
-      if (gain <= 0) { verdictEl.textContent = '—'; return; }
-      var months = cost / gain * 12;
-      if (months <= 12) {
-        verdictEl.innerHTML = '✅ Rentabilisé en ' + Math.max(1, Math.round(months)) +
-          ' mois — puis <strong>' + eur(gain) + ' / an de gain net</strong>';
-      } else {
-        verdictEl.innerHTML = '✅ Rentabilisé en ' + (months / 12).toFixed(1).replace('.', ',') + ' ans';
-      }
+      return { n: n, cost: cost, recov: recov, gain: gain };
     }
 
-    [panels, access, last, tilt].forEach(function (el) {
-      el.addEventListener('input', compute);
-      el.addEventListener('change', compute);
+    function showResults(r) {
+      costEl.textContent = eur(r.cost);
+      kwhEl.textContent  = kwh(r.recov);
+      gainEl.textContent = eur(r.gain) + ' /an';
+      if (r.gain <= 0) { verdictEl.textContent = '—'; }
+      else {
+        var months = r.cost / r.gain * 12;
+        if (months <= 12) {
+          verdictEl.innerHTML = '✅ Rentabilisé en ' + Math.max(1, Math.round(months)) +
+            ' mois — puis <strong>' + eur(r.gain) + ' / an de gain net</strong>';
+        } else {
+          verdictEl.innerHTML = '✅ Rentabilisé en ' + (months / 12).toFixed(1).replace('.', ',') + ' ans';
+        }
+      }
+      results.hidden = false;
+      results.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /* Le numéro de panneaux se met à jour en direct (pas le résultat) */
+    panels.addEventListener('input', function () { panelsOut.textContent = panels.value; });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
+
+      var r = calc();
+      if (hidPanels) hidPanels.value = r.n + ' panneaux';
+      if (hidAccess) hidAccess.value = access.options[access.selectedIndex].text;
+      if (hidLast)   hidLast.value   = last.options[last.selectedIndex].text;
+      if (hidTilt)   hidTilt.value   = tilt.options[tilt.selectedIndex].text;
+      if (hidCost)   hidCost.value   = r.cost + ' €';
+      if (hidGain)   hidGain.value   = Math.round(r.gain) + ' € / an';
+
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Envoi…'; }
+
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
+        .then(function (res) { return res.json(); })
+        .then(function () {
+          showResults(r);
+          if (btn) btn.textContent = 'Estimation envoyée ✓';
+        })
+        .catch(function () {
+          showResults(r); /* on affiche quand même le résultat */
+          if (btn) { btn.disabled = false; btn.textContent = 'Voir mon estimation'; }
+        });
     });
-    compute();
   }
 
 

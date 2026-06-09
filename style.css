@@ -1121,7 +1121,26 @@ img { display: block; max-width: 100%; }
   background: rgba(75,174,232,.18); border: 1px solid rgba(75,174,232,.35);
   border-radius: var(--r-sm); padding: 12px 14px; text-align: center;
 }
-.solar-sim__cta { margin-top: 4px; justify-content: center; }
+.solar-sim__contact input {
+  font-family: 'Outfit', sans-serif; font-size: .9rem; padding: 12px 14px;
+  border: 1.5px solid rgba(255,255,255,.2); border-radius: var(--r-sm);
+  background: rgba(255,255,255,.08); color: #fff;
+}
+.solar-sim__contact input::placeholder { color: rgba(255,255,255,.55); }
+.solar-sim__contact input:focus { outline: none; border-color: var(--bleu-clair); }
+.solar-sim__cta {
+  margin-top: 6px;
+  background: var(--bleu-clair); color: #fff; border: none;
+  border-radius: 50px; padding: 15px 22px;
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: .92rem;
+  cursor: pointer; text-align: center;
+  transition: background .25s, transform .25s;
+}
+.solar-sim__cta:hover { background: #3a9bd8; transform: translateY(-2px); }
+.solar-sim__cta:disabled { opacity: .6; cursor: default; transform: none; }
+.solar-sim__results { margin-top: 24px; max-width: 460px; margin-left: auto; margin-right: auto; }
+.solar-sim__results[hidden] { display: none; }
+.solar-sim__sent { font-size: .85rem; color: #bfe7c6; text-align: center; }
 .solar-sim__note { font-size: .72rem; color: rgba(255,255,255,.45); margin-top: 22px; }
 @media (max-width: 760px) {
   .solar-sim { padding: 36px 22px; }
