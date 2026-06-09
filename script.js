@@ -661,6 +661,8 @@
     var contact = document.querySelector('.contact-block');   // autres pages : section contact
     var isHome  = !!cards;
 
+    if (isHome && nav) nav.classList.add('nav--home'); // barre derrière les catégories (accueil seul)
+
     /* Modal formulaire (ordinateur) */
     var overlay = document.createElement('div');
     overlay.className = 'lv-devis-overlay';

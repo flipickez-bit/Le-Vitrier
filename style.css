@@ -73,7 +73,7 @@ img { display: block; max-width: 100%; }
   position: fixed;
   inset-inline: 0;
   top: 0;
-  z-index: 19; /* sous les cartes catégories (z-index 20) : la barre disparaît derrière elles */
+  z-index: 100;
   height: var(--nav-h);
   display: flex;
   align-items: center;
@@ -90,6 +90,8 @@ img { display: block; max-width: 100%; }
   transition: transform .35s var(--ease-spring);
 }
 .navbar.is-hidden { transform: translateY(-100%); }
+/* Sur l'accueil uniquement : passe sous les cartes catégories (z-index 20) */
+.navbar.nav--home { z-index: 19; }
 
 .navbar__logo { display: flex; align-items: center; flex-shrink: 0; }
 .navbar__logo img { height: 44px; width: auto; border-radius: 8px; }
