@@ -17,7 +17,7 @@
   <meta property="og:site_name"   content="Le Vitrier" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Nettoyage panneaux solaires","provider":{"@type":"LocalBusiness","name":"Le Vitrier","url":"https://levitrier06.fr","telephone":"+33677303065"},"areaServed":["Nice","Cannes","Antibes","Côte d'Azur"],"description":"Nettoyage de panneaux solaires à l'eau osmosée pure. Sans produit chimique. Rendement optimisé jusqu'à +30%."}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="style.css?v=25" />
 </head>
 <body>
 
@@ -101,6 +101,65 @@
         </ul>
       </section>
 
+      <!-- ── SIMULATEUR DE RENTABILITÉ ──────────────────────────── -->
+      <section class="solar-sim" id="solarSim">
+        <span class="info-section__label">Simulateur instantané</span>
+        <h2 class="solar-sim__title">Coût &amp; rentabilité de votre nettoyage</h2>
+        <p class="solar-sim__sub">Estimez en 10 secondes le prix de la prestation et ce qu'elle vous rapporte sur 1 an.</p>
+
+        <div class="solar-sim__grid">
+          <div class="solar-sim__controls">
+            <label class="solar-sim__field">
+              <span class="solar-sim__label">Nombre de panneaux <strong id="simPanelsOut">12</strong></span>
+              <input type="range" id="simPanels" min="1" max="40" value="12" />
+            </label>
+            <label class="solar-sim__field">
+              <span class="solar-sim__label">Accès au toit</span>
+              <select id="simAccess">
+                <option value="1">Facile — plain-pied, terrasse</option>
+                <option value="1.2" selected>Moyen — étage, échelle</option>
+                <option value="1.5">Difficile — hauteur, nacelle</option>
+              </select>
+            </label>
+            <label class="solar-sim__field">
+              <span class="solar-sim__label">Dernier nettoyage</span>
+              <select id="simLast">
+                <option value="0.05">Moins de 6 mois</option>
+                <option value="0.10" selected>6 mois à 1 an</option>
+                <option value="0.18">1 à 2 ans</option>
+                <option value="0.28">Plus de 2 ans / jamais</option>
+              </select>
+            </label>
+            <label class="solar-sim__field">
+              <span class="solar-sim__label">Inclinaison du toit</span>
+              <select id="simTilt">
+                <option value="plat">Plat / faible</option>
+                <option value="moyenne" selected>Moyenne</option>
+                <option value="forte">Forte</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="solar-sim__results">
+            <div class="solar-sim__result">
+              <span class="solar-sim__result-label">Coût estimé du nettoyage</span>
+              <span class="solar-sim__result-value" id="simCost">—</span>
+            </div>
+            <div class="solar-sim__result">
+              <span class="solar-sim__result-label">Production récupérée / an</span>
+              <span class="solar-sim__result-value" id="simKwh">—</span>
+            </div>
+            <div class="solar-sim__result solar-sim__result--hl">
+              <span class="solar-sim__result-label">Gain estimé / an</span>
+              <span class="solar-sim__result-value" id="simGain">—</span>
+            </div>
+            <div class="solar-sim__verdict" id="simVerdict">—</div>
+            <a href="https://wa.me/33763140034?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20le%20nettoyage%20de%20mes%20panneaux%20solaires." class="solar-sim__cta navbar__cta" target="_blank" rel="noopener">Demander mon devis</a>
+          </div>
+        </div>
+        <p class="solar-sim__note">Estimation indicative (production moyenne en région PACA, ~520 kWh/panneau/an, électricité 0,20 €/kWh). Le tarif exact est confirmé lors du devis gratuit.</p>
+      </section>
+
       <div class="contact-block">
         <h3 class="contact-block__title">Demandez votre devis</h3>
         <p class="contact-block__sub">Réponse sous 48 h · gratuit · sans engagement · disponible jusqu'à 20h30</p>
@@ -175,6 +234,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=24"></script>
+  <script src="script.js?v=25"></script>
 </body>
 </html>

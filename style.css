@@ -1076,6 +1076,58 @@ img { display: block; max-width: 100%; }
   background: #fff; color: var(--ink); cursor: pointer; width: 100%;
 }
 .contact-form select:focus { outline: none; border-color: var(--bleu-clair); }
+
+/* ================================================================
+   SIMULATEUR PANNEAUX SOLAIRES
+   ================================================================ */
+.solar-sim {
+  max-width: 980px;
+  margin: 0 auto 64px;
+  background: var(--bleu);
+  color: #fff;
+  border-radius: var(--r-xl);
+  padding: 48px 40px;
+  text-align: center;
+}
+.solar-sim .info-section__label { color: var(--bleu-clair); }
+.solar-sim__title { font-size: 1.9rem; font-weight: 800; margin: 8px 0 6px; letter-spacing: -.02em; }
+.solar-sim__sub { color: rgba(255,255,255,.7); font-size: .95rem; margin-bottom: 32px; }
+.solar-sim__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; text-align: left; }
+.solar-sim__controls { display: flex; flex-direction: column; gap: 18px; }
+.solar-sim__field { display: flex; flex-direction: column; gap: 8px; }
+.solar-sim__label { font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.85); }
+.solar-sim__label strong { color: var(--bleu-clair); font-size: 1.05rem; }
+.solar-sim__field select {
+  font-family: 'Outfit', sans-serif; font-size: .9rem; padding: 12px 14px;
+  border: 1.5px solid rgba(255,255,255,.2); border-radius: var(--r-sm);
+  background: rgba(255,255,255,.08); color: #fff; cursor: pointer;
+}
+.solar-sim__field select option { color: #111; }
+.solar-sim__field input[type="range"] { width: 100%; accent-color: var(--bleu-clair); cursor: pointer; }
+.solar-sim__results {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.solar-sim__result { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.solar-sim__result-label { font-size: .85rem; color: rgba(255,255,255,.7); }
+.solar-sim__result-value { font-size: 1.3rem; font-weight: 800; white-space: nowrap; }
+.solar-sim__result--hl { border-top: 1px solid rgba(255,255,255,.15); padding-top: 14px; }
+.solar-sim__result--hl .solar-sim__result-value { color: var(--bleu-clair); font-size: 1.7rem; }
+.solar-sim__verdict {
+  font-size: .9rem; font-weight: 600; color: #fff;
+  background: rgba(75,174,232,.18); border: 1px solid rgba(75,174,232,.35);
+  border-radius: var(--r-sm); padding: 12px 14px; text-align: center;
+}
+.solar-sim__cta { margin-top: 4px; justify-content: center; }
+.solar-sim__note { font-size: .72rem; color: rgba(255,255,255,.45); margin-top: 22px; }
+@media (max-width: 760px) {
+  .solar-sim { padding: 36px 22px; }
+  .solar-sim__grid { grid-template-columns: 1fr; gap: 24px; }
+  .solar-sim__title { font-size: 1.5rem; }
+}
 @media (max-width: 480px) {
   .lv-wheel-fab__txt { display: none; }
   .lv-wheel-fab { padding: 15px; border-radius: 50%; }

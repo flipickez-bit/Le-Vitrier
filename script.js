@@ -749,8 +749,68 @@
   }
 
 
+  /* ── SIMULATEUR PANNEAUX SOLAIRES ────────────────────────────── */
+  function initSolarSim() {
+    var root = document.getElementById('solarSim');
+    if (!root) return;
+
+    var panels    = document.getElementById('simPanels');
+    var panelsOut = document.getElementById('simPanelsOut');
+    var access    = document.getElementById('simAccess');
+    var last      = document.getElementById('simLast');
+    var tilt      = document.getElementById('simTilt');
+    var costEl    = document.getElementById('simCost');
+    var kwhEl     = document.getElementById('simKwh');
+    var gainEl    = document.getElementById('simGain');
+    var verdictEl = document.getElementById('simVerdict');
+    if (!panels) return;
+
+    var PRICE_PER_PANEL = 7;    // € par panneau
+    var MIN_PRICE       = 80;   // € minimum d'intervention
+    var PROD_PER_PANEL  = 520;  // kWh/an par panneau (PACA)
+    var ELEC_PRICE      = 0.20; // € par kWh
+    var tiltCost = { plat: 1, moyenne: 1.05, forte: 1.2 };
+    var tiltSoil = { plat: 1.2, moyenne: 1.0, forte: 0.85 };
+
+    function eur(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+    function kwh(n) { return Math.round(n).toLocaleString('fr-FR') + ' kWh'; }
+
+    function compute() {
+      var n    = parseInt(panels.value, 10);
+      var acc  = parseFloat(access.value);
+      var soil = parseFloat(last.value);
+      var t    = tilt.value;
+      panelsOut.textContent = n;
+
+      var cost  = Math.max(MIN_PRICE, n * PRICE_PER_PANEL * acc * (tiltCost[t] || 1));
+      var recov = n * PROD_PER_PANEL * soil * (tiltSoil[t] || 1);
+      var gain  = recov * ELEC_PRICE;
+
+      costEl.textContent = eur(cost);
+      kwhEl.textContent  = kwh(recov);
+      gainEl.textContent = eur(gain) + ' /an';
+
+      if (gain <= 0) { verdictEl.textContent = '—'; return; }
+      var months = cost / gain * 12;
+      if (months <= 12) {
+        verdictEl.innerHTML = '✅ Rentabilisé en ' + Math.max(1, Math.round(months)) +
+          ' mois — puis <strong>' + eur(gain) + ' / an de gain net</strong>';
+      } else {
+        verdictEl.innerHTML = '✅ Rentabilisé en ' + (months / 12).toFixed(1).replace('.', ',') + ' ans';
+      }
+    }
+
+    [panels, access, last, tilt].forEach(function (el) {
+      el.addEventListener('input', compute);
+      el.addEventListener('change', compute);
+    });
+    compute();
+  }
+
+
   /* ── INIT ─────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
+    initSolarSim();
     initReveal();
     initCardSpotlight();
     initCursorGlow();
