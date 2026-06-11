@@ -1,3 +1,28 @@
 node_modules/
 package-lock.json
 package.json
+
+# Fichiers de travail (non publies)
+ad-*.html
+pancarte.html
+QR-*.png
+sticker-*.png
+tmp_*.jpg
+test_*.png
+bon favicon.png
+favicon.svg
+contact.php
+PP.png
+hero particulier.png
+Hero FAQ*.JPG
+avant particulier.jpg
+apres particulier.jpg
+avant pro.png
+apres pro.jpeg
+apres-pro-mobile.jpeg
+apres-pro-new.jpeg
+Sale Particulier.jpg
+Propre Particulier.jpg
+avant-pro-new.png
+apres-pro-new.png
+Video hero.mp4

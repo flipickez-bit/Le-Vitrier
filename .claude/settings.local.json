@@ -106,7 +106,10 @@
       "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -1 && php -l contact.php\")",
       "Bash(grep -n 'mail\\($to' contact.php)",
       "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -1 && php -l contact.php && curl -s -o /dev/null -w 'Test envoi: HTTP %{http_code}\\\\n' -F 'nom=Test deliverabilite' -F 'telephone=0612345678' -F 'email=test@exemple.fr' -F 'categorie=Particulier' -F 'message=Test apres amelioration SPF' -F 'ajax=1' https://levitrier06.fr/contact.php\")",
-      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -1 && curl -s -o /dev/null -w 'Test envoi: HTTP %{http_code}\\\\n' -F 'nom=Test final' -F 'telephone=0612345678' -F 'email=test@exemple.fr' -F 'categorie=Particulier' -F 'message=Test retour version fonctionnelle' -F 'ajax=1' https://levitrier06.fr/contact.php\")"
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -1 && curl -s -o /dev/null -w 'Test envoi: HTTP %{http_code}\\\\n' -F 'nom=Test final' -F 'telephone=0612345678' -F 'email=test@exemple.fr' -F 'categorie=Particulier' -F 'message=Test retour version fonctionnelle' -F 'ajax=1' https://levitrier06.fr/contact.php\")",
+      "Bash(awk '{print $5, $9, $10, $11}')",
+      "Bash(echo \"Video hero.mp4\")",
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd ~/domains/levitrier06.fr/public_html && git pull origin main 2>&1 | tail -3 && rm -f tmp_avant.jpg tmp_apres.jpg tmp_apres2.jpg test_apres_A.png test_apres_B.png 2>/dev/null; echo SERVER_OK\")"
     ]
   }
 }

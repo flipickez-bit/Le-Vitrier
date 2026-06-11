@@ -872,8 +872,7 @@
     initSocialCarousel();
     initCarousels();
     initNavbar();
-    initFullPage();
-    initContactFiles();
+    initFullPage();
     initQuoteFab();
   });
 
