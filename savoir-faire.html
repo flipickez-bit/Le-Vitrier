@@ -17,6 +17,232 @@
   <meta property="og:site_name"   content="Le Vitrier" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="style.css?v=31" />
+
+  <style>
+    /* ════════════════════════════════════════════════════════════
+       SAVOIR-FAIRE — design éditorial épuré (styles scopés sk-)
+       ════════════════════════════════════════════════════════════ */
+    .sk-page {
+      background: #fff;
+      color: var(--ink);
+      padding-top: var(--nav-h);
+    }
+    .sk-wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── Hero minimal ── */
+    .sk-hero { padding: 110px 0 90px; }
+    .sk-kicker {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--bleu-clair);
+      margin-bottom: 30px;
+    }
+    .sk-kicker::before { content: ''; width: 36px; height: 1px; background: var(--bleu-clair); }
+    .sk-hero h1 {
+      font-size: clamp(2.4rem, 5.6vw, 4.2rem);
+      font-weight: 300;
+      letter-spacing: -.03em;
+      line-height: 1.08;
+      color: var(--bleu);
+      max-width: 17ch;
+    }
+    .sk-hero h1 strong { font-weight: 700; }
+    .sk-hero p {
+      margin-top: 28px;
+      max-width: 52ch;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: var(--ink-soft);
+    }
+
+    /* ── Bande chiffres ── */
+    .sk-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--gris-mid);
+      border-bottom: 1px solid var(--gris-mid);
+    }
+    .sk-stat {
+      padding: 40px 12px;
+      text-align: center;
+    }
+    .sk-stat + .sk-stat { border-left: 1px solid var(--gris-mid); }
+    .sk-stat__num {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 300;
+      letter-spacing: -.02em;
+      color: var(--bleu);
+    }
+    .sk-stat__num sup { font-size: 1.2rem; color: var(--bleu-clair); font-weight: 600; }
+    .sk-stat__label {
+      display: block;
+      margin-top: 8px;
+      font-size: .74rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* ── Sections éditoriales : titre gauche / contenu droite ── */
+    .sk-section { padding: 110px 0; }
+    .sk-section + .sk-section { border-top: 1px solid var(--gris-mid); }
+    .sk-cols {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .sk-side { position: sticky; top: calc(var(--nav-h) + 40px); }
+    .sk-side h2 {
+      font-size: 1.9rem;
+      font-weight: 300;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      color: var(--bleu);
+      margin-top: 22px;
+    }
+    .sk-side h2 strong { font-weight: 700; }
+    .sk-side p { margin-top: 16px; font-size: .9rem; line-height: 1.75; color: var(--ink-soft); }
+
+    /* ── Méthode : étapes ── */
+    .sk-steps { display: flex; flex-direction: column; }
+    .sk-step {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 28px;
+      padding: 38px 0;
+    }
+    .sk-step + .sk-step { border-top: 1px solid var(--gris-mid); }
+    .sk-step__num {
+      font-size: 2rem;
+      font-weight: 200;
+      color: var(--bleu-clair);
+      letter-spacing: -.02em;
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .sk-step h3 { font-size: 1.06rem; font-weight: 700; color: var(--bleu); margin-bottom: 10px; }
+    .sk-step p  { font-size: .92rem; line-height: 1.8; color: var(--ink-soft); }
+
+    /* ── Équipement : grille hairline ── */
+    .sk-equip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--gris-mid);
+    }
+    .sk-equip-cell {
+      padding: 44px 40px;
+      transition: background .35s;
+    }
+    .sk-equip-cell:hover { background: var(--gris); }
+    .sk-equip-cell:nth-child(2n) { border-left: 1px solid var(--gris-mid); }
+    .sk-equip-cell:nth-child(n+3) { border-top: 1px solid var(--gris-mid); }
+    .sk-equip-cell svg {
+      width: 30px; height: 30px;
+      stroke: var(--bleu-clair); fill: none;
+      stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+      margin-bottom: 20px;
+    }
+    .sk-equip-cell h3 { font-size: 1rem; font-weight: 700; color: var(--bleu); margin-bottom: 10px; }
+    .sk-equip-cell p  { font-size: .88rem; line-height: 1.75; color: var(--ink-soft); }
+
+    /* ── Engagements : bande navy ── */
+    .sk-promise {
+      background: var(--bleu);
+      color: #fff;
+      padding: 100px 0;
+    }
+    .sk-promise .sk-kicker { color: var(--bleu-clair); }
+    .sk-promise h2 {
+      font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+      font-weight: 300;
+      letter-spacing: -.02em;
+      max-width: 22ch;
+      line-height: 1.25;
+    }
+    .sk-promise h2 strong { font-weight: 700; }
+    .sk-promise-list {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 64px;
+    }
+    .sk-promise-item {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 18px;
+      padding: 26px 0;
+      border-top: 1px solid rgba(255, 255, 255, .14);
+    }
+    .sk-promise-item svg {
+      width: 20px; height: 20px; margin-top: 2px;
+      stroke: var(--bleu-clair); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .sk-promise-item h3 { font-size: .98rem; font-weight: 700; margin-bottom: 6px; }
+    .sk-promise-item h3 span {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--bleu); background: var(--bleu-clair);
+      border-radius: 30px; padding: 3px 10px;
+      margin-left: 8px; vertical-align: 2px;
+    }
+    .sk-promise-item p { font-size: .86rem; line-height: 1.7; color: rgba(255, 255, 255, .65); }
+
+    /* ── CTA final ── */
+    .sk-cta { padding: 120px 0; text-align: center; }
+    .sk-cta h2 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: -.025em;
+      color: var(--bleu);
+      line-height: 1.15;
+    }
+    .sk-cta h2 strong { font-weight: 700; }
+    .sk-cta > .sk-wrap > p { margin-top: 18px; font-size: .95rem; color: var(--ink-soft); }
+    .sk-cta-actions {
+      margin-top: 44px;
+      display: flex; gap: 14px;
+      align-items: center; justify-content: center;
+      flex-wrap: wrap;
+    }
+    .sk-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 38px;
+      border-radius: 50px;
+      font-family: 'Outfit', sans-serif;
+      font-size: .92rem; font-weight: 700;
+      letter-spacing: .01em;
+      text-decoration: none;
+      transition: transform .25s, box-shadow .25s, background .25s, color .25s;
+    }
+    .sk-btn--primary { background: var(--bleu); color: #fff; }
+    .sk-btn--primary:hover { background: var(--bleu-clair); transform: translateY(-2px); }
+    .sk-btn--ghost { border: 1.5px solid var(--gris-mid); color: var(--bleu); }
+    .sk-btn--ghost:hover { border-color: var(--bleu-clair); transform: translateY(-2px); }
+    .sk-cta-note { margin-top: 22px; font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 880px) {
+      .sk-hero { padding: 70px 0 60px; }
+      .sk-section { padding: 70px 0; }
+      .sk-cols { grid-template-columns: 1fr; gap: 40px; }
+      .sk-side { position: static; }
+      .sk-stats { grid-template-columns: 1fr 1fr; }
+      .sk-stat:nth-child(3) { border-left: none; }
+      .sk-stat:nth-child(n+3) { border-top: 1px solid var(--gris-mid); }
+      .sk-equip { grid-template-columns: 1fr; }
+      .sk-equip-cell:nth-child(2n) { border-left: none; }
+      .sk-equip-cell:nth-child(n+2) { border-top: 1px solid var(--gris-mid); }
+      .sk-equip-cell { padding: 34px 26px; }
+      .sk-promise { padding: 70px 0; }
+      .sk-promise-list { grid-template-columns: 1fr; gap: 0; margin-top: 36px; }
+      .sk-cta { padding: 80px 0; }
+      .sk-step { grid-template-columns: 56px 1fr; gap: 18px; padding: 30px 0; }
+    }
+  </style>
 </head>
 <body>
 
@@ -27,227 +253,169 @@
     <div class="navbar__actions"><a href="savoir-faire.html" class="navbar__cta">Notre Savoir-Faire</a><a href="https://wa.me/33763140034?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20un%20nettoyage%20de%20vitres." class="navbar__cta" target="_blank" rel="noopener">Votre devis</a></div>
   </nav>
 
-  <!-- ── HERO ───────────────────────────────────────────────────── -->
-  <section class="page-hero page-hero--savoir-faire">
-    <div class="page-hero__content">
-      <span class="page-hero__tag">Savoir-Faire</span>
-      <h1 class="page-hero__title">Ce qui fait<br><span class="page-hero__accent">la différence</span></h1>
-      <p class="page-hero__desc">Méthode rigoureuse, matériel professionnel, résultat impeccable —<br>à chaque intervention, sans exception.</p>
+  <div class="sk-page">
+
+    <!-- ── HERO ─────────────────────────────────────────────────── -->
+    <header class="sk-hero">
+      <div class="sk-wrap">
+        <span class="sk-kicker">Notre savoir-faire</span>
+        <h1>La propreté est un métier.<br /><strong>Voici le nôtre.</strong></h1>
+        <p>Derrière chaque vitre impeccable, il y a une méthode précise, un matériel professionnel et une exigence qui ne se négocie pas. De Cannes à Monaco, voici comment nous travaillons.</p>
+      </div>
+    </header>
+
+    <!-- ── CHIFFRES ─────────────────────────────────────────────── -->
+    <div class="sk-wrap">
+      <div class="sk-stats">
+        <div class="sk-stat">
+          <span class="sk-stat__num">100<sup>+</sup></span>
+          <span class="sk-stat__label">Clients satisfaits</span>
+        </div>
+        <div class="sk-stat">
+          <span class="sk-stat__num">4</span>
+          <span class="sk-stat__label">Secteurs d'expertise</span>
+        </div>
+        <div class="sk-stat">
+          <span class="sk-stat__num">5</span>
+          <span class="sk-stat__label">Jours de garantie pluie</span>
+        </div>
+        <div class="sk-stat">
+          <span class="sk-stat__num">48<sup>h</sup></span>
+          <span class="sk-stat__label">Devis gratuit</span>
+        </div>
+      </div>
     </div>
-    <div class="page-hero__logo-wrap">
-      <img src="Logo.png" alt="Le Vitrier" />
-    </div>
-  </section>
 
-  <div class="sf-page">
-
-    <!-- ── 1. MANIFESTE + STATS ──────────────────────────────────── -->
-    <section class="sfp-section sfp-section--navy">
-      <div class="sfp-inner">
-
-        <p class="sfp-quote">
-          La propreté, c'est un métier.<br>
-          Voici <em>le nôtre</em>.
-        </p>
-
-        <div class="sfp-stats">
-          <div class="sfp-stat">
-            <span class="sfp-stat__num">100<span class="sfp-stat__plus">+</span></span>
-            <span class="sfp-stat__label">Clients satisfaits</span>
+    <!-- ── MÉTHODE ──────────────────────────────────────────────── -->
+    <section class="sk-section">
+      <div class="sk-wrap">
+        <div class="sk-cols">
+          <div class="sk-side">
+            <span class="sk-kicker">La méthode</span>
+            <h2>Quatre étapes,<br /><strong>zéro compromis.</strong></h2>
+            <p>Chaque intervention suit le même protocole, du diagnostic au contrôle final. C'est ce qui garantit un résultat constant, chantier après chantier.</p>
           </div>
-          <div class="sfp-stat">
-            <span class="sfp-stat__num">4</span>
-            <span class="sfp-stat__label">Secteurs d'expertise</span>
-          </div>
-          <div class="sfp-stat">
-            <span class="sfp-stat__num">5</span>
-            <span class="sfp-stat__label">Jours de garantie pluie</span>
-          </div>
-          <div class="sfp-stat">
-            <span class="sfp-stat__num">48h</span>
-            <span class="sfp-stat__label">Devis gratuit</span>
+          <div class="sk-steps">
+            <article class="sk-step">
+              <span class="sk-step__num">01</span>
+              <div>
+                <h3>Diagnostic des surfaces</h3>
+                <p>Avant de toucher quoi que ce soit, nous évaluons la nature des surfaces et identifions précisément les salissures — calcaire, pollution atmosphérique, plâtre, silicone. Chaque situation est différente, chaque traitement aussi.</p>
+              </div>
+            </article>
+            <article class="sk-step">
+              <span class="sk-step__num">02</span>
+              <div>
+                <h3>Préparation du matériel</h3>
+                <p>L'eau osmosée est préparée sur place. Le matériel est sélectionné selon le type de surface et l'environnement. Aucune improvisation — chaque intervention commence dans les règles.</p>
+              </div>
+            </article>
+            <article class="sk-step">
+              <span class="sk-step__num">03</span>
+              <div>
+                <h3>Intervention technique</h3>
+                <p>Raclette professionnelle, perche carbone télescopique, gestes précis. La technique est adaptée à chaque surface : pression maîtrisée, aucun risque de rayure, aucun résidu à l'évaporation.</p>
+              </div>
+            </article>
+            <article class="sk-step">
+              <span class="sk-step__num">04</span>
+              <div>
+                <h3>Contrôle &amp; validation</h3>
+                <p>Chaque vitre est inspectée sous différents angles de lumière. Nous repartons quand c'est parfait — pas avant. Aucune zone n'est laissée sans vérification.</p>
+              </div>
+            </article>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ── 2. NOTRE MÉTHODE ──────────────────────────────────────── -->
-    <section class="sfp-section">
-      <div class="sfp-inner">
-        <span class="sfp-label">Notre méthode</span>
-        <h2 class="sfp-title">4 étapes, zéro compromis</h2>
-        <ul class="info-list">
-          <li class="info-item">
-            <span class="info-item__num">01</span>
-            <h3 class="info-item__title">Diagnostic des surfaces</h3>
-            <p class="info-item__text">Avant de toucher quoi que ce soit, on évalue la nature des surfaces et identifie précisément les salissures présentes — calcaire, pollution atmosphérique, plâtre, siliconé. Chaque situation est différente, chaque traitement aussi.</p>
-          </li>
-          <li class="info-item">
-            <span class="info-item__num">02</span>
-            <h3 class="info-item__title">Préparation du matériel</h3>
-            <p class="info-item__text">L'eau osmosée est préparée sur place. Le matériel est sélectionné selon le type de surface et l'environnement. <strong>Aucune improvisation</strong> — chaque intervention commence dans les règles.</p>
-          </li>
-          <li class="info-item">
-            <span class="info-item__num">03</span>
-            <h3 class="info-item__title">Intervention technique</h3>
-            <p class="info-item__text">Raclette professionnelle, perche carbone télescopique, gestes précis. La technique est adaptée à chaque surface : <strong>pression maîtrisée</strong>, aucun risque de rayure, aucun résidu à l'évaporation.</p>
-          </li>
-          <li class="info-item">
-            <span class="info-item__num">04</span>
-            <h3 class="info-item__title">Contrôle & validation</h3>
-            <p class="info-item__text">Chaque vitre est inspectée après nettoyage sous différents angles de lumière. On repart quand c'est parfait — <strong>pas avant</strong>. Aucune zone n'est laissée sans vérification.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ── 3. NOTRE ÉQUIPEMENT ───────────────────────────────────── -->
-    <section class="sfp-section sfp-section--navy">
-      <div class="sfp-inner">
-        <span class="sfp-label">Notre équipement</span>
-        <h2 class="sfp-title sfp-title--light">Les bons outils, toujours</h2>
-        <div class="sfp-equip">
-
-          <div class="sfp-equip-card">
-            <div class="sfp-equip-icon">
+    <!-- ── ÉQUIPEMENT ───────────────────────────────────────────── -->
+    <section class="sk-section">
+      <div class="sk-wrap">
+        <div class="sk-cols">
+          <div class="sk-side">
+            <span class="sk-kicker">L'équipement</span>
+            <h2>Les bons outils,<br /><strong>toujours.</strong></h2>
+            <p>Un résultat professionnel commence par un matériel professionnel. Rien de plus, rien de moins.</p>
+          </div>
+          <div class="sk-equip">
+            <div class="sk-equip-cell">
               <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+              <h3>Eau osmosée pure</h3>
+              <p>Déminéralisée, sans calcaire ni minéraux. Elle s'évapore sans laisser la moindre trace — contrairement à l'eau du robinet.</p>
             </div>
-            <h3 class="sfp-equip-name">Eau osmosée pure</h3>
-            <p class="sfp-equip-desc">Déminéralisée, sans calcaire ni minéraux. S'évapore sans laisser la moindre trace — contrairement à l'eau du robinet.</p>
-          </div>
-
-          <div class="sfp-equip-card">
-            <div class="sfp-equip-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/></svg>
+            <div class="sk-equip-cell">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="8" y1="5" x2="16" y2="5"/></svg>
+              <h3>Perches carbone</h3>
+              <p>Télescopiques, légères et rigides. Les parties hautes sont atteintes sans échelle — en sécurité, sans pression excessive sur le verre.</p>
             </div>
-            <h3 class="sfp-equip-name">Perches carbone</h3>
-            <p class="sfp-equip-desc">Télescopiques, légères et rigides. Permettent d'atteindre les parties hautes sans échelle — en sécurité, sans pression excessive sur le verre.</p>
-          </div>
-
-          <div class="sfp-equip-card">
-            <div class="sfp-equip-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><line x1="12" y1="8" x2="12" y2="19"/><line x1="9" y1="19" x2="15" y2="19"/></svg>
+            <div class="sk-equip-cell">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"/><line x1="12" y1="8" x2="12" y2="19"/><line x1="9" y1="19" x2="15" y2="19"/></svg>
+              <h3>Raclettes professionnelles</h3>
+              <p>Caoutchoucs de qualité professionnelle, changés régulièrement. Finition impeccable sur toutes surfaces vitrées — sans marque, sans strie.</p>
             </div>
-            <h3 class="sfp-equip-name">Raclettes pro</h3>
-            <p class="sfp-equip-desc">Caoutchoucs de qualité professionnelle, changés régulièrement. Finition impeccable sur toutes surfaces vitrées — sans marque, sans strie.</p>
-          </div>
-
-          <div class="sfp-equip-card">
-            <div class="sfp-equip-icon">
+            <div class="sk-equip-cell">
               <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <h3>Produits biodégradables</h3>
+              <p>Aucun produit chimique agressif. Nos solutions respectent les surfaces, les joints et l'environnement — sans risque pour votre intérieur.</p>
             </div>
-            <h3 class="sfp-equip-name">Produits biodégradables</h3>
-            <p class="sfp-equip-desc">Aucun produit chimique agressif. Nos solutions respectent les surfaces, les joints et l'environnement — sans risque pour votre intérieur.</p>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ── 4. NOS ENGAGEMENTS ─────────────────────────────────────── -->
-    <section class="sfp-section">
-      <div class="sfp-inner">
-        <span class="sfp-label">Nos engagements</span>
-        <h2 class="sfp-title">Ce qu'on vous promet, toujours</h2>
-        <div class="sfp-engage">
-
-          <article class="sf-block sf-block--guarantee">
-            <span class="sf-block__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 12a11.05 11.05 0 00-22 0zm-5 7a3 3 0 01-6 0v-7"/>
-              </svg>
-            </span>
-            <h3 class="sf-block__title">Garantie Pluie 5 jours <span class="sf-block__badge">Offerte</span></h3>
-            <p class="sf-block__text">Il pleut dans les 5 jours suivant votre prestation ? On revient <strong>gratuitement</strong>, sans discussion. Valable pour tous nos secteurs.</p>
-          </article>
-
-          <article class="sf-block">
-            <span class="sf-block__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </span>
-            <h3 class="sf-block__title">Zéro rayure, zéro trace</h3>
-            <p class="sf-block__text">Matériel adapté, gestes maîtrisés — <strong>aucune rayure</strong>, aucun résidu. Si ce n'est pas parfait après contrôle, on recommence.</p>
-          </article>
-
-          <article class="sf-block">
-            <span class="sf-block__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
-              </svg>
-            </span>
-            <h3 class="sf-block__title">RC Pro incluse</h3>
-            <p class="sf-block__text">Chaque intervention est couverte par notre <strong>assurance responsabilité civile professionnelle</strong>. Zéro risque financier pour vous en cas d'incident.</p>
-          </article>
-
-          <article class="sf-block">
-            <span class="sf-block__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </span>
-            <h3 class="sf-block__title">Devis sous 48h</h3>
-            <p class="sf-block__text">Réponse <strong>garantie sous 48 heures</strong>, gratuite et sans engagement. On se déplace si nécessaire pour estimer au plus juste.</p>
-          </article>
-
+    <!-- ── ENGAGEMENTS ──────────────────────────────────────────── -->
+    <section class="sk-promise">
+      <div class="sk-wrap">
+        <span class="sk-kicker">Nos engagements</span>
+        <h2>Ce que nous vous promettons, <strong>toujours.</strong></h2>
+        <div class="sk-promise-list">
+          <div class="sk-promise-item">
+            <svg viewBox="0 0 24 24"><path d="M23 12a11.05 11.05 0 00-22 0zm-5 7a3 3 0 01-6 0v-7"/></svg>
+            <div>
+              <h3>Garantie pluie 5 jours<span>Offerte</span></h3>
+              <p>Il pleut dans les 5 jours suivant votre prestation ? Nous revenons gratuitement, sans discussion. Valable pour tous nos secteurs.</p>
+            </div>
+          </div>
+          <div class="sk-promise-item">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <div>
+              <h3>Zéro rayure, zéro trace</h3>
+              <p>Matériel adapté, gestes maîtrisés. Si ce n'est pas parfait après contrôle, nous recommençons.</p>
+            </div>
+          </div>
+          <div class="sk-promise-item">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <div>
+              <h3>RC Pro incluse</h3>
+              <p>Chaque intervention est couverte par notre assurance responsabilité civile professionnelle. Zéro risque financier pour vous.</p>
+            </div>
+          </div>
+          <div class="sk-promise-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <h3>Devis sous 48 h</h3>
+              <p>Réponse garantie sous 48 heures, gratuite et sans engagement. Nous nous déplaçons si nécessaire pour estimer au plus juste.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── 5. CONTACT ─────────────────────────────────────────────── -->
-    <section class="sfp-section sfp-section--contact">
-      <div class="sfp-inner">
-        <div class="contact-block">
-          <h3 class="contact-block__title">Prêt à en parler ?</h3>
-          <p class="contact-block__sub">Réponse sous 48 h · gratuit · sans engagement · disponible jusqu'à 20h30</p>
-          <div class="contact-grid">
-            <a href="tel:+33677303065" class="contact-btn">
-              <span class="contact-btn__icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span>
-              <span class="contact-btn__label">Appeler</span>
-              <span class="contact-btn__value">06 77 30 30 65</span>
-            </a>
-            <a href="https://wa.me/33763140034" class="contact-btn contact-btn--whatsapp" target="_blank" rel="noopener">
-              <span class="contact-btn__icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
-              <span class="contact-btn__label">WhatsApp</span>
-              <span class="contact-btn__value">07 63 14 00 34</span>
-            </a>
-            <a href="mailto:levitrier06@gmail.com" class="contact-btn">
-              <span class="contact-btn__icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
-              <span class="contact-btn__label">Email</span>
-              <span class="contact-btn__value">levitrier06@gmail.com</span>
-            </a>
-          </div>
-
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="3675748c-2323-4c16-a420-23d18e251b22" />
-          <input type="hidden" name="subject" value="Nouvelle demande de devis - levitrier06.fr" />
-          <input type="hidden" name="from_name" value="Site Le Vitrier" />
-          <input type="hidden" name="redirect" value="https://levitrier06.fr/merci.html" />
-          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-          <div class="contact-form__sep">ou demandez votre devis</div>
-          <select name="Secteur" required>
-            <option value="">Secteur *</option>
-            <option>Particulier</option>
-            <option>Professionnel</option>
-            <option>Panneaux solaires</option>
-            <option>Après chantier</option>
-          </select>
-          <div class="contact-form__row">
-            <input type="text" name="Nom" placeholder="Votre nom *" required />
-            <input type="tel" name="Telephone" placeholder="Votre téléphone *" required />
-          </div>
-          <input type="email" name="email" placeholder="Votre email *" required />
-          <input type="text" name="Adresse" placeholder="Adresse du chantier *" required />
-          <textarea name="Description" placeholder="Description du chantier : surface, nombre de vitres, étage, accès…" required></textarea>
-          <button type="submit" class="contact-form__btn">Envoyer ma demande de devis</button>
-        </form>
+    <!-- ── CTA FINAL ────────────────────────────────────────────── -->
+    <section class="sk-cta">
+      <div class="sk-wrap">
+        <h2>Prêt à voir <strong>la différence&nbsp;?</strong></h2>
+        <p>Devis gratuit, réponse sous 48 h, sans engagement.</p>
+        <div class="sk-cta-actions">
+          <a href="https://wa.me/33763140034?text=Bonjour%2C%20je%20souhaite%20un%20devis%20gratuit%20pour%20un%20nettoyage%20de%20vitres." class="sk-btn sk-btn--primary navbar__cta" target="_blank" rel="noopener">Demander mon devis</a>
+          <a href="tel:+33677303065" class="sk-btn sk-btn--ghost">06 77 30 30 65</a>
         </div>
+        <p class="sk-cta-note">De Cannes à Monaco · disponible jusqu'à 20 h 30</p>
       </div>
     </section>
 
-  </div><!-- end .sf-page -->
+  </div>
 
   <footer class="footer">
     <span class="footer__brand">Le Vitrier</span>
