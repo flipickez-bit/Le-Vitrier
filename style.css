@@ -1769,8 +1769,10 @@ img { display: block; max-width: 100%; }
 /* ── Social cards ────────────────────────────────────────────── */
 .social-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 20px;
+  max-width: 580px;
+  margin: 0 auto;
 }
 .social-card {
   display: flex;
@@ -1784,10 +1786,6 @@ img { display: block; max-width: 100%; }
 .social-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.12); }
 .social-card--insta {
   background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  color: #fff;
-}
-.social-card--fb {
-  background: #1877f2;
   color: #fff;
 }
 .social-card__icon {
@@ -3014,18 +3012,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 /* ── Carousel réseaux sociaux mobile ────────────────────── */
 @media (max-width: 640px) {
   .social-carousel-wrap { overflow: hidden; width: 100%; }
-  .social-cards {
-    display: flex !important;
-    flex-wrap: nowrap;
-    width: 100%;
-    gap: 0;
-    grid-template-columns: unset;
-    transition: transform .4s cubic-bezier(.4,0,.2,1);
-    will-change: transform;
-  }
   .social-card {
-    flex: 0 0 100% !important;
-    min-width: 100%;
     padding: 24px 20px;
     gap: 16px;
   }
