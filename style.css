@@ -2787,8 +2787,8 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   /* Actions — centrées */
   .hero__actions { margin: 0; gap: 14px; justify-content: center; align-items: center; flex-direction: row; flex-wrap: wrap; }
 
-  /* Vidéo cachée sur mobile */
-  .hero__right { display: none; }
+  /* Visuel conservé sur mobile (photo légère, plus la vidéo) */
+  .hero__right { display: block; height: 52vw; min-height: 210px; }
 
   /* Stat cards — cachées sur mobile, trop encombrées */
   .stat-card { display: none; }
