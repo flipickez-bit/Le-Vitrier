@@ -1,0 +1,29 @@
+# ── Le Vitrier — redirections suite au repositionnement 100 % panneaux solaires ──
+# Les anciennes pages "vitres" pointent désormais vers la page d'accueil solaire.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^particulier\.html$        /                 [R=301,L]
+  RewriteRule ^professionnel\.html$      /                 [R=301,L]
+  RewriteRule ^apres-chantier\.html$     /                 [R=301,L]
+  RewriteRule ^panneaux-solaires\.html$  /#solarSim        [R=301,L,NE]
+</IfModule>
+
+# ── Compression ──────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ── Cache navigateur ─────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 6 months"
+  ExpiresByType image/png               "access plus 6 months"
+  ExpiresByType image/webp              "access plus 6 months"
+  ExpiresByType video/mp4               "access plus 6 months"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>

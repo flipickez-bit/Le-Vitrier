@@ -654,7 +654,7 @@
     if (document.querySelector('.lv-devis-overlay')) return;
 
     var waLink = 'https://wa.me/33763140034?text=' +
-      encodeURIComponent('Bonjour, je souhaite un devis gratuit pour un nettoyage de vitres.');
+      encodeURIComponent('Bonjour, je souhaite un devis gratuit pour le nettoyage de mes panneaux solaires.');
 
     var nav     = document.querySelector('.navbar');
     var cards   = document.querySelector('.cards-section');   // accueil : bloc catégories
@@ -678,19 +678,19 @@
           '<input type="hidden" name="redirect" value="https://levitrier06.fr/merci.html" />' +
           '<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />' +
           '<select name="Secteur" required>' +
-            '<option value="">Secteur *</option>' +
-            '<option>Particulier</option>' +
-            '<option>Professionnel</option>' +
-            '<option>Panneaux solaires</option>' +
-            '<option>Après chantier</option>' +
+            '<option value="">Type d\'installation *</option>' +
+            '<option>Particulier — maison / villa</option>' +
+            '<option>Professionnel / agricole</option>' +
+            '<option>Grande installation / ombrières</option>' +
+            '<option>Contrat d\'entretien annuel</option>' +
           '</select>' +
           '<div class="contact-form__row">' +
             '<input type="text" name="Nom" placeholder="Votre nom *" required />' +
             '<input type="tel" name="Telephone" placeholder="Votre téléphone *" required />' +
           '</div>' +
           '<input type="email" name="email" placeholder="Votre email *" required />' +
-          '<input type="text" name="Adresse" placeholder="Adresse du chantier *" required />' +
-          '<textarea name="Description" placeholder="Description du chantier : surface, nombre de vitres, étage, accès…" required></textarea>' +
+          '<input type="text" name="Adresse" placeholder="Adresse de l\'installation *" required />' +
+          '<textarea name="Description" placeholder="Nombre de panneaux, inclinaison du toit, accès, dernier nettoyage…" required></textarea>' +
           '<button type="submit" class="contact-form__btn">Envoyer ma demande</button>' +
         '</form>' +
       '</div>';
@@ -872,7 +872,7 @@
     initSocialCarousel();
     initCarousels();
     initNavbar();
-    initFullPage();
+    initFullPage();
     initQuoteFab();
   });
 
