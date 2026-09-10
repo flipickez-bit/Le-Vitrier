@@ -3421,6 +3421,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   line-height: 1.75;
   color: rgba(255, 255, 255, .68);
 }
+.solar-wall__lead strong { color: #fff; font-weight: 700; }
 
 .solar-wall__grid {
   display: grid;
