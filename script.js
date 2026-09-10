@@ -910,7 +910,11 @@
     initBASliders();
     initMarquee();
     initDirectionalHover();
-    initGoogleReviews();
+    /* Avis desormais statiques (releves sur la fiche Google) : on n appelle plus
+       l API Places, qui est facturee au-dela de 1 000 requetes par mois.
+       Pour repasser en automatique, reactiver la ligne ci-dessous ET la
+       facturation du projet Google Cloud.
+    initGoogleReviews(); */
     initTestiCarousel();
     initSocialCarousel();
     initCarousels();
