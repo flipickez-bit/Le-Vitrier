@@ -348,6 +348,7 @@
     var good = reviews.filter(function(r) { return r.rating >= 4; });
     if (good.length === 0) return;
 
+    grid.classList.add('testi-grid--live');
     grid.innerHTML = good.map(function(r) {
       var stars = '';
       for (var i = 0; i < 5; i++) stars += (i < r.rating) ? '★' : '☆';
@@ -373,12 +374,37 @@
     initTestiCarousel();
   }
 
-  function initGoogleReviews() {
-    if (!GOOGLE_PLACE_ID) return; // pas encore configuré
+  var GOOGLE_MAPS_KEY = 'AIzaSyCd4sKdr95t74uPAEpUhxFFUl7rd_Nat1s';
 
-    /* Cache localStorage 6h */
+  /* Charge l'API Maps a la demande, une seule fois, sans bloquer le rendu. */
+  function loadMapsApi(cb) {
+    if (typeof google !== 'undefined' && google.maps && google.maps.places) { cb(); return; }
+    window._lvMapsQueue = window._lvMapsQueue || [];
+    window._lvMapsQueue.push(cb);
+    if (window._lvMapsLoading) return;
+    window._lvMapsLoading = true;
+    window.__lvMapsReady = function () {
+      window._lvMapsQueue.forEach(function (f) { try { f(); } catch (e) {} });
+      window._lvMapsQueue = [];
+    };
+    var s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_MAPS_KEY +
+            '&libraries=places&loading=async&language=fr&callback=__lvMapsReady';
+    s.async = true;
+    s.defer = true;
+    s.onerror = function () { window._lvMapsLoading = false; };
+    document.head.appendChild(s);
+  }
+
+  function initGoogleReviews() {
+    if (!GOOGLE_PLACE_ID) return;
+    var grid = document.querySelector('.testi-grid');
+    if (!grid) return;
+
     var KEY_DATA = 'lv_reviews_data';
     var KEY_TIME = 'lv_reviews_time';
+
+    /* Cache 6 h : evite un appel API a chaque visite. */
     try {
       var cached = localStorage.getItem(KEY_DATA);
       var ts     = parseInt(localStorage.getItem(KEY_TIME) || '0', 10);
@@ -386,31 +412,34 @@
         renderGoogleReviews(JSON.parse(cached));
         return;
       }
-    } catch(e) {}
+    } catch (e) {}
 
     function fetchFromApi() {
       if (typeof google === 'undefined' || !google.maps || !google.maps.places) return;
-      var div = document.createElement('div');
-      var svc = new google.maps.places.PlacesService(div);
+      var svc = new google.maps.places.PlacesService(document.createElement('div'));
       svc.getDetails({
         placeId: GOOGLE_PLACE_ID,
-        fields: ['reviews', 'rating', 'user_ratings_total', 'name']
-      }, function(place, status) {
-        if (status !== google.maps.places.PlacesServiceStatus.OK || !place.reviews) return;
-        var reviews = place.reviews.slice(0, 5);
+        fields: ['reviews', 'rating', 'user_ratings_total', 'name'],
+        language: 'fr'
+      }, function (place, status) {
+        /* En cas d'echec (facturation Google Cloud desactivee, quota, reseau),
+           on ne fait rien : le bloc honnete vers la fiche Google reste affiche. */
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !place || !place.reviews) return;
+        var reviews = place.reviews.slice(0, 6);
         try {
           localStorage.setItem(KEY_DATA, JSON.stringify(reviews));
           localStorage.setItem(KEY_TIME, String(Date.now()));
-        } catch(e) {}
+        } catch (e) {}
         renderGoogleReviews(reviews);
       });
     }
 
-    if (window._mapsReady) {
-      fetchFromApi();
-    } else {
-      window._mapsReadyCb = fetchFromApi;
-    }
+    /* On ne charge l'API que si la section avis approche de l'ecran. */
+    if (typeof IntersectionObserver === 'undefined') { loadMapsApi(fetchFromApi); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { io.disconnect(); loadMapsApi(fetchFromApi); }
+    }, { rootMargin: '400px' });
+    io.observe(grid);
   }
 
 

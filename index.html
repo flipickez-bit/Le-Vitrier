@@ -94,14 +94,13 @@
   }
   </script>
 
-  <!-- Avis Google automatiques : desactives tant que la facturation n'est pas activee
-       sur le projet Google Cloud (l'API renvoie BillingNotEnabledMapError).
-       Pour les reactiver, il suffit de decommenter les deux lignes ci-dessous.
-  <script>function initGoogleMaps(){window._mapsReady=true;if(window._mapsReadyCb)window._mapsReadyCb();}</script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd4sKdr95t74uPAEpUhxFFUl7rd_Nat1s&libraries=places&callback=initGoogleMaps" async defer></script>
-  -->
+  <!-- Avis Google : l'API Places est chargee a la demande par script.js
+       quand la section avis approche de l'ecran (aucun cout au chargement).
+       Elle repond actuellement BillingNotEnabledMapError : il faut activer la
+       facturation du projet Google Cloud 441954952756 pour que les vrais avis
+       s'affichent. En attendant, le bloc renvoyant vers la fiche Google reste visible. -->
 
-  <link rel="stylesheet" href="style.css?v=44" />
+  <link rel="stylesheet" href="style.css?v=45" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 </head>
 <body>
@@ -379,31 +378,6 @@
     </div>
   </section>
 
-  <!-- ═══════════════ ZONE D'INTERVENTION ══════════════════════ -->
-  <section class="hp-section hp-section--white">
-    <div class="hp-inner">
-      <div class="hp-head">
-        <span class="section-label">Zone d'intervention</span>
-        <h2 class="section-heading">Partout dans le Gard</h2>
-        <p class="section-sub">Nous nous déplaçons sur l'ensemble du département — et juste au-delà si le chantier le justifie.</p>
-      </div>
-      <div class="zone-list">
-        <span class="zone-chip">Nîmes</span>
-        <span class="zone-chip">Alès</span>
-        <span class="zone-chip">Uzès</span>
-        <span class="zone-chip">Bagnols-sur-Cèze</span>
-        <span class="zone-chip">Beaucaire</span>
-        <span class="zone-chip">Vauvert</span>
-        <span class="zone-chip">Saint-Gilles</span>
-        <span class="zone-chip">Villeneuve-lès-Avignon</span>
-        <span class="zone-chip">Pont-Saint-Esprit</span>
-        <span class="zone-chip">Le Vigan</span>
-        <span class="zone-chip">Marguerittes</span>
-        <span class="zone-chip">Sommières</span>
-      </div>
-    </div>
-  </section>
-
   <!-- ═══════════════ AVIS CLIENTS ════════════════════════════ -->
   <section class="hp-section">
     <div class="hp-inner">
@@ -480,6 +454,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=44"></script>
+  <script src="script.js?v=45"></script>
 </body>
 </html>
