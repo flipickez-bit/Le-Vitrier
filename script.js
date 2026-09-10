@@ -773,11 +773,25 @@
     var hidGain   = document.getElementById('hidGain');
     if (!panels || !form) return;
 
-    var MIN_PRICE      = 80;   // € minimum d'intervention
-    var PROD_PER_PANEL = 520;  // kWh/an par panneau (PACA)
-    var ELEC_PRICE     = 0.20; // € par kWh
+    var MIN_PRICE = 80;   // € minimum d'intervention
+
+    /* ── Données de production — Gard (30) ────────────────────────
+       PVGIS 5.2, Nîmes plein sud à 35° avec 14 % de pertes système :
+       1 456 kWh/kWc/an. Les Cévennes (Alès, Le Vigan) produisent 3 à 6 %
+       de moins selon les masques de relief → on retient 1 400 kWh/kWc/an
+       comme moyenne départementale.
+       Panneau résidentiel standard 2026 : 425 Wc (gamme 400-500 Wc).
+       Électricité : tarif réglementé base, 0,2001 €/kWh (septembre 2026). */
+    var PANEL_WC       = 425;
+    var PROD_PER_KWC   = 1400;
+    var PROD_PER_PANEL = PANEL_WC / 1000 * PROD_PER_KWC;  // ≈ 595 kWh/an/panneau
+    var ELEC_PRICE     = 0.20;
+
     var tiltCost = { plat: 1, moyenne: 1.07, forte: 1.18 };  // toit pentu = +%
     var tiltSoil = { plat: 1.2, moyenne: 1.0, forte: 0.85 };
+    /* Production selon l'inclinaison : ~30-35° est l'optimum sous cette latitude,
+       un toit plat perd ~10 %, une forte pente ~5 %. */
+    var tiltProd = { plat: 0.90, moyenne: 1.0, forte: 0.95 };
     /* Gain récupéré selon l'ancienneté : 1 an / 2 ans+ */
     var SOIL     = [0.22, 0.30];  // 22% / 30% de production récupérée
     var LASTCOST = [1.08, 1.18];  // dépôt plus ancien = nettoyage un peu plus cher
@@ -802,7 +816,7 @@
       var t    = tilt.value;
       var raw   = basePrice(n) * acc * (tiltCost[t] || 1) * (LASTCOST[li] || 1);
       var cost  = roundUp5(Math.max(MIN_PRICE, raw));
-      var recov = n * PROD_PER_PANEL * soil * (tiltSoil[t] || 1);
+      var recov = n * PROD_PER_PANEL * (tiltProd[t] || 1) * soil * (tiltSoil[t] || 1);
       var gain  = recov * ELEC_PRICE;
       return { n: n, cost: cost, recov: recov, gain: gain };
     }

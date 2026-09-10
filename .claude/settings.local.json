@@ -120,7 +120,8 @@
       "Bash(curl -s \"https://levitrier06.fr/\")",
       "Bash(curl -s \"https://levitrier06.fr/style.css?v=41\")",
       "Bash(git commit -q -m ' *)",
-      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd domains/levitrier06.fr/public_html && git pull 2>&1 | tail -2\")"
+      "Bash(ssh -i /c/Users/xaloi/.ssh/hostinger_le_vitrier -p 65002 u148476767@147.93.93.138 -o StrictHostKeyChecking=no \"cd domains/levitrier06.fr/public_html && git pull 2>&1 | tail -2\")",
+      "Bash(curl -s \"https://levitrier06.fr/style.css?v=42\")"
     ]
   }
 }
