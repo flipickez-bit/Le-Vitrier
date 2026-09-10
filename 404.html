@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <title>Page introuvable — Le Vitrier</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="/style.css?v=44" />
+  <style>
+    .e404 { min-height: 78vh; display: flex; align-items: center; justify-content: center; padding: 80px 24px; text-align: center; }
+    .e404__card { max-width: 520px; }
+    .e404__num { font-size: 4.5rem; font-weight: 800; color: var(--bleu-clair); letter-spacing: -.05em; line-height: 1; margin-bottom: 18px; }
+    .e404__title { font-size: 1.6rem; font-weight: 800; color: var(--bleu); letter-spacing: -.02em; margin-bottom: 14px; }
+    .e404__text { font-size: .95rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 32px; }
+    .e404__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .e404__btn { padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: .9rem; text-decoration: none; transition: all .3s; }
+    .e404__btn--primary { background: var(--bleu); color: #fff; }
+    .e404__btn--primary:hover { background: var(--bleu-clair); transform: translateY(-2px); }
+    .e404__btn--ghost { border: 1.5px solid var(--gris-mid); color: var(--bleu); }
+    .e404__btn--ghost:hover { border-color: var(--bleu-clair); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="navbar__logo">
+      <img src="/Logo.png" alt="Le Vitrier" height="44" />
+    </a>
+    <div class="navbar__actions">
+      <a href="/savoir-faire.html" class="navbar__cta">Notre Savoir-Faire</a>
+      <a href="tel:+33677303065" class="navbar__cta">06 77 30 30 65</a>
+    </div>
+  </nav>
+
+  <div class="e404">
+    <div class="e404__card">
+      <div class="e404__num">404</div>
+      <h1 class="e404__title">Cette page n'existe pas</h1>
+      <p class="e404__text">
+        Le lien est peut-&ecirc;tre ancien : Le Vitrier s'est recentr&eacute; sur le
+        <strong>nettoyage de panneaux solaires</strong> et certaines pages ont &eacute;t&eacute; retir&eacute;es.
+        Tout se trouve d&eacute;sormais sur la page d'accueil.
+      </p>
+      <div class="e404__actions">
+        <a href="/" class="e404__btn e404__btn--primary">Retour &agrave; l'accueil</a>
+        <a href="/#solarSim" class="e404__btn e404__btn--ghost">Estimer mon devis</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span class="footer__brand">Le Vitrier</span>
+    <div class="footer__contacts">
+      <a href="tel:+33677303065">06 77 30 30 65</a>
+      <span class="footer__dot" aria-hidden="true"></span>
+      <a href="mailto:levitrier06@gmail.com">levitrier06@gmail.com</a>
+    </div>
+    <div class="footer__legal-links">
+      <a href="/savoir-faire.html">Notre savoir-faire</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+      <a href="/politique-confidentialite.html">Confidentialit&eacute;</a>
+    </div>
+  </footer>
+
+</body>
+</html>
