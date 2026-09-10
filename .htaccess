@@ -12,6 +12,8 @@
   RewriteRule ^particulier\.html$        /                 [R=301,L]
   RewriteRule ^professionnel\.html$      /                 [R=301,L]
   RewriteRule ^apres-chantier\.html$     /                 [R=301,L]
+  RewriteRule ^panneaux-solaires\.html$  /                 [R=301,L]
+  RewriteRule ^verandas-garde-corps\.html$ /               [R=301,L]
 </IfModule>
 
 # ── Page d'erreur personnalisee ──────────────────────────────────
