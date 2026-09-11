@@ -2901,3 +2901,28 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 /* La pastille du hero s'étirait sur toute la largeur : le conteneur est
    un flex en colonne, l'enfant inline-flex héritait donc de align-items: stretch. */
 .page-hero__tag { align-self: flex-start; }
+
+
+/* ── Simulateur : curseur + saisie directe du nombre de panneaux ──── */
+.solar-sim__panels {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.solar-sim__panels input[type="range"] { flex: 1; min-width: 0; }
+.solar-sim__panels input[type="number"] {
+  width: 76px;
+  flex: none;
+  padding: 8px 10px;
+  text-align: center;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 10px;
+}
+.solar-sim__panels input[type="number"]:focus {
+  outline: none;
+  border-color: var(--bleu-clair);
+}

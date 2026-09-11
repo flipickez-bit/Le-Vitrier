@@ -826,11 +826,25 @@
     var LASTCOST = [1.08, 1.18];  // dépôt plus ancien = nettoyage un peu plus cher
 
     /* Tarif par paliers : 10 premiers à 11€, 5 suivants à 10€, reste à 9€ */
+    /* Tarif degressif par paliers successifs : chaque tranche est facturee a
+       son propre prix. Au-dela de 40 panneaux le temps d'installation est
+       amorti sur bien plus de surface, d'ou la baisse du prix unitaire. */
+    var PALIERS = [
+      [10,       11],   /* 1 a 10      */
+      [5,        10],   /* 11 a 15     */
+      [25,        9],   /* 16 a 40     */
+      [60,      6.5],   /* 41 a 100    */
+      [150,       5],   /* 101 a 250   */
+      [Infinity,  4]    /* au-dela     */
+    ];
     function basePrice(n) {
-      var t1 = Math.min(n, 10);
-      var t2 = Math.min(Math.max(n - 10, 0), 5);
-      var t3 = Math.max(n - 15, 0);
-      return t1 * 11 + t2 * 10 + t3 * 9;
+      var reste = n, total = 0;
+      for (var i = 0; i < PALIERS.length && reste > 0; i++) {
+        var q = Math.min(reste, PALIERS[i][0]);
+        total += q * PALIERS[i][1];
+        reste -= q;
+      }
+      return total;
     }
     function roundUp5(n) { return Math.ceil(n / 5) * 5; }
 
@@ -869,7 +883,21 @@
     }
 
     /* Le numéro de panneaux se met à jour en direct (pas le résultat) */
-    panels.addEventListener('input', function () { panelsOut.textContent = panels.value; });
+    /* Le curseur va jusqu'a 300 : le champ numerique permet la saisie precise. */
+    var panelsNum = document.getElementById('simPanelsNum');
+    function syncPanels(src) {
+      var v = parseInt(src.value, 10);
+      if (isNaN(v)) return;
+      v = Math.max(1, Math.min(300, v));
+      panels.value = v;
+      if (panelsNum) panelsNum.value = v;
+      panelsOut.textContent = v;
+    }
+    panels.addEventListener('input', function () { syncPanels(panels); });
+    if (panelsNum) {
+      panelsNum.addEventListener('input', function () { syncPanels(panelsNum); });
+      panelsNum.addEventListener('blur',  function () { syncPanels(panelsNum); });
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();

@@ -100,7 +100,7 @@
        facturation du projet Google Cloud 441954952756 pour que les vrais avis
        s'affichent. En attendant, le bloc renvoyant vers la fiche Google reste visible. -->
 
-  <link rel="stylesheet" href="style.css?v=55" />
+  <link rel="stylesheet" href="style.css?v=56" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 </head>
 <body>
@@ -310,7 +310,10 @@
             <div class="solar-sim__controls">
               <label class="solar-sim__field">
                 <span class="solar-sim__label">Nombre de panneaux <strong id="simPanelsOut">12</strong></span>
-                <input type="range" id="simPanels" min="1" max="40" value="12" />
+                <div class="solar-sim__panels">
+                  <input type="range" id="simPanels" min="1" max="300" value="12" />
+                  <input type="number" id="simPanelsNum" min="1" max="300" value="12" inputmode="numeric" aria-label="Nombre de panneaux" />
+                </div>
               </label>
               <label class="solar-sim__field">
                 <span class="solar-sim__label">Accès au toit</span>
@@ -454,6 +457,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=55"></script>
+  <script src="script.js?v=56"></script>
 </body>
 </html>
