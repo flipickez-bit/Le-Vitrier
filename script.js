@@ -710,7 +710,6 @@
             '<option value="">Type d\'installation *</option>' +
             '<option>Particulier — maison / villa</option>' +
             '<option>Professionnel / agricole</option>' +
-            '<option>Grande installation / ombrières</option>' +
             '<option>Contrat d\'entretien annuel</option>' +
           '</select>' +
           '<div class="contact-form__row">' +
@@ -888,7 +887,7 @@
     function syncPanels(src) {
       var v = parseInt(src.value, 10);
       if (isNaN(v)) return;
-      v = Math.max(1, Math.min(300, v));
+      v = Math.max(1, Math.min(150, v));
       panels.value = v;
       if (panelsNum) panelsNum.value = v;
       panelsOut.textContent = v;
